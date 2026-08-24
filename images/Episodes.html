@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Episodes | Miraculous News Network</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    /* CORE DESIGN SYSTEM (Reused from your homepage) */
+    :root {
+      --primary: #E60026;
+      --primary-hover: #c40020;
+      --secondary: #121212;
+      --accent-green: #00FF33;
+      --accent-gold: #FFD700;
+      --bg-main: #f8f9fc;
+      --bg-card: #ffffff;
+      --text-main: #1f2937;
+      --text-muted: #6b7280;
+      --border-color: #e5e7eb;
+      --dots-opacity: 0.05;
+      --shadow: 0 10px 25px -5px rgba(230, 0, 38, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+      --radius: 16px;
+    }
+
+    [data-theme="dark"] {
+      --primary: #00FF33;
+      --primary-hover: #00cc29;
+      --secondary: #1f2937;
+      --accent-green: #E60026;
+      --accent-gold: #FFD700;
+      --bg-main: #0b0f19;
+      --bg-card: #151c2c;
+      --text-main: #f3f4f6;
+      --text-muted: #9ca3af;
+      --border-color: #2d3748;
+      --dots-opacity: 0.02;
+      --shadow: 0 10px 25px -5px rgba(0, 255, 51, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.5);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease; }
+    
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--bg-main);
+      color: var(--text-main);
+      line-height: 1.6;
+      background-image: radial-gradient(var(--text-main) 1px, transparent 1px), radial-gradient(rgba(0,0,0,var(--dots-opacity)) 2px, transparent 2px);
+      background-size: 24px 24px;
+      background-position: 0 0;
+    }
+
+    h1, h2, h3, h4, h5 { font-family: 'Montserrat', sans-serif; font-weight: 800; }
+    a { color: inherit; text-decoration: none; }
+
+    /* HEADER STYLES */
+    .header { position: sticky; top: 0; z-index: 1000; background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(12px); border-bottom: 2px solid var(--primary); }
+    [data-theme="dark"] .header { background: rgba(11, 15, 25, 0.85); }
+    .nav-container { max-width: 1280px; margin: 0 auto; padding: 1rem 1.5rem; display: flex; align-items: center; justify-content: space-between; }
+    .logo { display: flex; align-items: center; gap: 0.75rem; font-size: 1.5rem; font-weight: 900; letter-spacing: -0.5px; color: var(--primary); text-transform: uppercase; }
+    .logo-emblem { width: 36px; height: 36px; background-color: var(--primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 10px rgba(230, 0, 38, 0.5); }
+    .logo-emblem::after { content: "🐞"; font-size: 1.2rem; }
+    [data-theme="dark"] .logo-emblem::after { content: "🐾"; }
+    .nav-links { display: flex; gap: 2rem; list-style: none; font-weight: 600; font-size: 0.95rem; }
+    .nav-links a:hover { color: var(--primary); }
+    
+    .toggle-btn { background: var(--bg-card); border: 1px solid var(--border-color); padding: 0.5rem 1rem; border-radius: 30px; cursor: pointer; font-size: 0.85rem; font-weight: 600; display: flex; align-items: center; gap: 0.5rem; }
+
+    /* EPISODES LAYOUT */
+    .episodes-container { max-width: 1280px; margin: 3rem auto; padding: 0 1.5rem; }
+    
+    .page-title { font-size: 2.5rem; text-align: center; margin-bottom: 3rem; color: var(--primary); }
+
+    .season-section { margin-bottom: 4rem; }
+    .season-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.5rem; border-bottom: 2px solid var(--border-color); padding-bottom: 0.75rem; }
+    .season-title { font-size: 1.8rem; position: relative; }
+    .season-title::after { content: ""; position: absolute; bottom: -0.85rem; left: 0; width: 60px; height: 4px; background-color: var(--primary); }
+
+    .cards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1.5rem; }
+    
+    /* CARD STYLES */
+    .card { background-color: var(--bg-card); border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border-color); box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); display: flex; flex-direction: column; transition: transform 0.25s ease; }
+    .card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+    .card-img-wrapper { position: relative; height: 160px; overflow: hidden; background: #333; }
+    .card-img { width: 100%; height: 100%; object-fit: cover; }
+    .badge { padding: 0.35rem 0.75rem; border-radius: 20px; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; position: absolute; top: 10px; left: 10px; z-index: 2; background-color: var(--primary); color: #fff; }
+    
+    .card-body { padding: 1.25rem; display: flex; flex-direction: column; flex-grow: 1; }
+    .card-meta { font-size: 0.75rem; color: var(--text-muted); margin-bottom: 0.5rem; font-weight: 600; }
+    .card-title { font-size: 1.1rem; line-height: 1.35; margin-bottom: 0.75rem; }
+    .card-excerpt { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.25rem; flex-grow: 1; }
+    .btn-watch { color: var(--primary); font-weight: 700; font-size: 0.85rem; display: inline-block; }
+
+    /* FOOTER */
+    .footer { background-color: var(--secondary); color: #ffffff; padding: 3rem 1.5rem 1.5rem 1.5rem; border-top: 4px solid var(--primary); margin-top: 4rem; }
+    .footer-container { max-width: 1280px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 2rem; margin-bottom: 2rem; }
+    .footer-brand { font-size: 1.25rem; font-weight: 800; color: var(--primary); margin-bottom: 1rem; }
+  </style>
+</head>
+<body data-theme="light">
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="nav-container">
+      <a href="index.html" class="logo">
+        <div class="logo-emblem"></div>
+        <span>Miraculous Network</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">Latest News</a></li>
+        <li><a href="episodes.html" style="color: var(--primary);">Episodes</a></li>
+        <li><a href="https://www.youtube.com/@SN_DESIGNED_AMV">Miraculous AMVs</a></li>
+      </ul>
+      <button class="toggle-btn" id="themeToggle" title="Toggle Day/Night Mode">
+        <span id="themeIcon">☀️</span> <span id="themeLabel">Paris Day</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- MAIN EPISODES CONTENT -->
+  <main class="episodes-container">
+    <h1 class="page-title">Miraculous Episode Library</h1>
+
+    <!-- SEASON 6 -->
+    <section class="season-section" id="season-6">
+      <div class="season-header">
+        <h2 class="season-title">Season 6</h2>
+      </div>
+      <div class="cards-grid">
+        <!-- Episode Card -->
+        <article class="card">
+          <div class="card-img-wrapper">
+            <span class="badge">S06 E26</span>
+            <img src="Nemesis.jpg" alt="Nemesis Thumbnail" class="card-img">
+          </div>
+          <div class="card-body">
+            <div class="card-meta">Finale</div>
+            <h3 class="card-title">Nemesis</h3>
+            <p class="card-excerpt">While Marinette sees Alya get increasingly closer to uncovering her secrets, Ladybug comes up with a plan to flush the new holder of the Butterfly Miraculous out.</p>
+            <a href="https://t.me/miraculousseason5ep26/3" class="btn-watch">Watch Episode →</a>
+          </div>
+        </article>
+        
+<article class="card">
+          <div class="card-img-wrapper">
+            <span class="badge">S06 E25</span>
+            <img src="Secret Protocol.webp" alt="Nemesis Thumbnail" class="card-img">
+          </div>
+          <div class="card-body">
+            <div class="card-meta">Episode 25</div>
+            <h3 class="card-title">Secret Protocol</h3>
+            <p class="card-excerpt">Marinette plans a surprise for Sabine's birthday, but she is the one who is in for a day of nonstop surprises.</p>
+            <a href="https://t.me/miraculousseason5ep26/3" class="btn-watch">Watch Episode →</a>
+          </div>
+        </article>
+
+<article class="card">
+          <div class="card-img-wrapper">
+            <span class="badge">S06 E24</span>
+            <img src="Queen of the Dreadzone.webp" alt="Nemesis Thumbnail" class="card-img">
+          </div>
+          <div class="card-body">
+            <div class="card-meta">Episode 24</div>
+            <h3 class="card-title">Queen Of the Dreadzone</h3>
+            <p class="card-excerpt">Upon learning that Chloé is back in Paris, Marinette fears the worst… Quite the opposite of Sabrina, who is convinced that Chloé has changed and become a good person. Who is right?</p>
+            <a href="https://t.me/miraculousseason5ep26/3" class="btn-watch">Watch Episode →</a>
+          </div>
+        </article>
+
+<article class="card">
+          <div class="card-img-wrapper">
+            <span class="badge">S06 E23</span>
+            <img src="Sadnansi.webp" alt="Nemesis Thumbnail" class="card-img">
+          </div>
+          <div class="card-body">
+            <div class="card-meta">Episode 23</div>
+            <h3 class="card-title">Sadnansi</h3>
+            <p class="card-excerpt">Marinette is convinced Nora and her coworker, Twig, have feelings for each other but are too afraid to confess, risking their chance at love.</p>
+            <a href="https://t.me/miraculousseason5ep26/3" class="btn-watch">Watch Episode →</a>
+          </div>
+        </article>
+
+<article class="card">
+          <div class="card-img-wrapper">
+            <span class="badge">S06 E22</span>
+            <img src="Lady Chaos.webp" alt="Nemesis Thumbnail" class="card-img">
+          </div>
+          <div class="card-body">
+            <div class="card-meta">Episode 22</div>
+            <h3 class="card-title">Lady Chaos</h3>
+            <p class="card-excerpt">When Adrien decides to make a documentary about his father Gabriel Agreste, Marinette does her best to protect his secrets.</p>
+            <a href="https://t.me/miraculousseason5ep26/3" class="btn-watch">Watch Episode →</a>
+          </div>
+        </article>
+
+<article class="card">
+          <div class="card-img-wrapper">
+            <span class="badge">S06 E21</span>
+            <img src="The Chained Titans.webp" alt="Nemesis Thumbnail" class="card-img">
+          </div>
+          <div class="card-body">
+            <div class="card-meta">Episode 21</div>
+            <h3 class="card-title">The Chained Titans</h3>
+            <p class="card-excerpt">Afraid that Marinette and Adrien's relationship is failing, Nino suggests making them Carapace and Rena Rouge's deputies, unaware that they are already Ladybug and Cat Noir.</p>
+            <a href="https://t.me/miraculousseason5ep26/3" class="btn-watch">Watch Episode →</a>
+          </div>
+        </article>
+
+<article class="card">
+          <div class="card-img-wrapper">
+            <span class="badge">S06 E20</span>
+            <img src="Heartfixer.webp" alt="Nemesis Thumbnail" class="card-img">
+          </div>
+          <div class="card-body">
+            <div class="card-meta">Episode 20</div>
+            <h3 class="card-title">Heartfixer</h3>
+            <p class="card-excerpt">Determined to destroy everything that reminds them of love, Nelson, Loïc, and Ray decide to get akumatized to put an end to Marinette and Adrien's relationship.</p>
+            <a href="https://t.me/miraculousseason5ep26/3" class="btn-watch">Watch Episode →</a>
+          </div>
+        </article>
+
+<article class="card">
+          <div class="card-img-wrapper">
+            <span class="badge">S06 E19</span>
+            <img src="Riginarazione.webp" alt="Nemesis Thumbnail" class="card-img">
+          </div>
+          <div class="card-body">
+            <div class="card-meta">Episode 19</div>
+            <h3 class="card-title">Riginarazione</h3>
+            <p class="card-excerpt">As her grandparents' 75th birthdays approach, Marinette learns news that will turn hers and her family's lives upside down.</p>
+            <a href="https://t.me/miraculousseason5ep26/3" class="btn-watch">Watch Episode →</a>
+          </div>
+        </article>
+
+<article class="card">
+          <div class="card-img-wrapper">
+            <span class="badge">S06 E18</span>
+            <img src="The Dirtifiers.webp" alt="Nemesis Thumbnail" class="card-img">
+          </div>
+          <div class="card-body">
+            <div class="card-meta">Episode 18</div>
+            <h3 class="card-title">The Dirtifiers</h3>
+            <p class="card-excerpt">Marinette and her friends begin to wonder what's wrong with Kagami. With her disappearance from the group, the girls decide to go looking for her.</p>
+            <a href="https://t.me/miraculousseason5ep26/3" class="btn-watch">Watch Episode →</a>
+          </div>
+        </article>
+
+<article class="card">
+          <div class="card-img-wrapper">
+            <span class="badge">S06 E17</span>
+            <img src="A Fairy Good Night.webp" alt="Nemesis Thumbnail" class="card-img">
+          </div>
+          <div class="card-body">
+            <div class="card-meta">Episode 17</div>
+            <h3 class="card-title">A Fairy Good Night</h3>
+            <p class="card-excerpt">Max's mom is leaving for a space mission soon. When Marinette hears the news, she comes up with an idea to help Max cope well with the separation.</p>
+            <a href="https://t.me/miraculousseason5ep26/3" class="btn-watch">Watch Episode →</a>
+          </div>
+        </article>
+
+<article class="card">
+          <div class="card-img-wrapper">
+            <span class="badge">S06 E16</span>
+            <img src="Noe.webp" alt="Nemesis Thumbnail" class="card-img">
+          </div>
+          <div class="card-body">
+            <div class="card-meta">Episode 16</div>
+            <h3 class="card-title">Noe</h3>
+            <p class="card-excerpt">A film is being developed, with a script that discredits Ladybug and Cat Noir. If the people of Paris came to see this web of lies as the truth, this film could change everything.</p>
+            <a href="https://t.me/miraculousseason5ep26/3" class="btn-watch">Watch Episode →</a>
+          </div>
+        </article>
+
+<article class="card">
+          <div class="card-img-wrapper">
+            <span class="badge">S06 E15</span>
+            <img src="The Ruler.webp" alt="Nemesis Thumbnail" class="card-img">
+          </div>
+          <div class="card-body">
+            <div class="card-meta">Episode 15</div>
+            <h3 class="card-title">The Ruler</h3>
+            <p class="card-excerpt">While trying to hide her seasonal cold from Adrien, Marinette tries to help Nathaniel assert himself so that he can draw the next strip of the comic book that Marc has written for him.</p>
+            <a href="https://t.me/miraculousseason5ep26/3" class="btn-watch">Watch Episode →</a>
+          </div>
+        </article>
+
+<article class="card">
+          <div class="card-img-wrapper">
+            <span class="badge">S06 E14</span>
+            <img src="Grandiaper.webp" alt="Nemesis Thumbnail" class="card-img">
+          </div>
+          <div class="card-body">
+            <div class="card-meta">Episode 14</div>
+            <h3 class="card-title">Grandiaper</h3>
+            <p class="card-excerpt">While Zoé looks for a way to stop ill-intentioned people on her path from doing evil, Ladybug is faced with a series of strange events in Paris.</p>
+            <a href="https://t.me/miraculousseason5ep26/3" class="btn-watch">Watch Episode →</a>
+          </div>
+        </article>
+
+<article class="card">
+          <div class="card-img-wrapper">
+            <span class="badge">S06 E13</span>
+            <img src="Yaksi Gozen.webp" alt="Nemesis Thumbnail" class="card-img">
+          </div>
+          <div class="card-body">
+            <div class="card-meta">Episode 13</div>
+            <h3 class="card-title">Yaksi Gozen</h3>
+            <p class="card-excerpt">While Adrien wonders how to be as surprising as Marinette, Kagami and Félix wonder how to avoid unpleasant surprises. But a supervillain will upset the plans of the four teenagers.</p>
+            <a href="https://t.me/miraculousseason5ep26/3" class="btn-watch">Watch Episode →</a>
+          </div>
+        </article>
+
+
+<article class="card">
+          <div class="card-img-wrapper">
+            <span class="badge">S06 E12</span>
+            <img src="Wreckless Driver.webp" alt="Nemesis Thumbnail" class="card-img">
+          </div>
+          <div class="card-body">
+            <div class="card-meta">Episode 12</div>
+            <h3 class="card-title">Wreckless Driver</h3>
+            <p class="card-excerpt">Traumatized by being akumatized, Aglaé has developed a phobia of butterflies and is now afraid to leave the house. Marinette would like to find a magical solution to help her friend, but as she will soon discover, not all problems can be solved with a Miraculous Ladybug!</p>
+            <a href="https://t.me/miraculousseason5ep26/3" class="btn-watch">Watch Episode →</a>
+          </div>
+        </article>
+
+
+<article class="card">
+          <div class="card-img-wrapper">
+            <span class="badge">S06 E11</span>
+            <img src="Revelator.webp" alt="Nemesis Thumbnail" class="card-img">
+          </div>
+          <div class="card-body">
+            <div class="card-meta">Episode 11</div>
+            <h3 class="card-title">Revelator</h3>
+            <p class="card-excerpt">An influencer turns his attention to Marinette and Adrien since they're the most famous couple in Paris, and when Marinette tries to teach the influencer a lesson about his smear campaign, he winds up akumatized into an upgraded villain of Pixelator.</p>
+            <a href="https://t.me/miraculousseason5ep26/3" class="btn-watch">Watch Episode →</a>
+          </div>
+        </article>
+
+
+<article class="card">
+          <div class="card-img-wrapper">
+            <span class="badge">S06 E10</span>
+            <img src="The Dark Castle.webp" alt="Nemesis Thumbnail" class="card-img">
+          </div>
+          <div class="card-body">
+            <div class="card-meta">Episode 10</div>
+            <h3 class="card-title">The Dark Castle</h3>
+            <p class="card-excerpt">To allow Alix to celebrate her birthday with her friends and family, Marinette gets the Rabbit Miraculous back and becomes the Keeper of Time for a few hours.</p>
+            <a href="https://t.me/miraculousseason5ep26/3" class="btn-watch">Watch Episode →</a>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- SEASON 5 -->
+    <section class="season-section" id="season-5">
+      <div class="season-header">
+        <h2 class="season-title">Season 5</h2>
+      </div>
+      <div class="cards-grid">
+        <!-- Episode Card -->
+        <article class="card">
+          <div class="card-img-wrapper">
+            <span class="badge">S05 E01</span>
+            <img src="placeholder.jpg" alt="Evolution Thumbnail" class="card-img">
+          </div>
+          <div class="card-body">
+            <div class="card-meta">Episode 1</div>
+            <h3 class="card-title">Evolution</h3>
+            <p class="card-excerpt">Monarch has seized the Rabbit Miraculous and goes back in time.</p>
+            <a href="#" class="btn-watch">Watch Episode →</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- SEASON 4 -->
+    <section class="season-section" id="season-4">
+      <div class="season-header">
+        <h2 class="season-title">Season 4</h2>
+      </div>
+      <div class="cards-grid">
+        <!-- Episode Card -->
+        <article class="card">
+          <div class="card-img-wrapper">
+            <span class="badge">S04 E01</span>
+            <img src="placeholder.jpg" alt="Truth Thumbnail" class="card-img">
+          </div>
+          <div class="card-body">
+            <div class="card-meta">Episode 1</div>
+            <h3 class="card-title">Truth</h3>
+            <p class="card-excerpt">Luka is akumatized into Truth, and wants to know Marinette's secret.</p>
+            <a href="#" class="btn-watch">Watch Episode →</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- SEASON 3 -->
+    <section class="season-section" id="season-3">
+      <div class="season-header">
+        <h2 class="season-title">Season 3</h2>
+      </div>
+      <div class="cards-grid">
+        <!-- Episode Card -->
+        <article class="card">
+          <div class="card-img-wrapper">
+            <span class="badge">S03 E01</span>
+            <img src="placeholder.jpg" alt="Chameleon Thumbnail" class="card-img">
+          </div>
+          <div class="card-body">
+            <div class="card-meta">Episode 1</div>
+            <h3 class="card-title">Chameleon</h3>
+            <p class="card-excerpt">Lila returns to class and is akumatized into Chameleon.</p>
+            <a href="#" class="btn-watch">Watch Episode →</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- SEASON 2 -->
+    <section class="season-section" id="season-2">
+      <div class="season-header">
+        <h2 class="season-title">Season 2</h2>
+      </div>
+      <div class="cards-grid">
+        <!-- Episode Card -->
+        <article class="card">
+          <div class="card-img-wrapper">
+            <span class="badge">S02 E01</span>
+            <img src="placeholder.jpg" alt="The Collector Thumbnail" class="card-img">
+          </div>
+          <div class="card-body">
+            <div class="card-meta">Episode 1</div>
+            <h3 class="card-title">The Collector</h3>
+            <p class="card-excerpt">Gabriel Agreste is akumatized into The Collector.</p>
+            <a href="#" class="btn-watch">Watch Episode →</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- SEASON 1 -->
+    <section class="season-section" id="season-1">
+      <div class="season-header">
+        <h2 class="season-title">Season 1</h2>
+      </div>
+      <div class="cards-grid">
+        <!-- Episode Card -->
+        <article class="card">
+          <div class="card-img-wrapper">
+            <span class="badge">S01 E01</span>
+            <img src="placeholder.jpg" alt="Stormy Weather Thumbnail" class="card-img">
+          </div>
+          <div class="card-body">
+            <div class="card-meta">Episode 1</div>
+            <h3 class="card-title">Stormy Weather</h3>
+            <p class="card-excerpt">Aurore is akumatized into Stormy Weather after losing a contest.</p>
+            <a href="#" class="btn-watch">Watch Episode →</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div>
+        <div class="footer-brand">🐞 MIRACULOUS NETWORK</div>
+        <p style="font-size: 0.85rem; opacity: 0.8;">The premier fan news hub for everything Miraculous.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- THEME SWITCHER SCRIPT -->
+  <script>
+    const themeToggleBtn = document.getElementById('themeToggle');
+    const themeIcon = document.getElementById('themeIcon');
+    const themeLabel = document.getElementById('themeLabel');
+
+    themeToggleBtn.addEventListener('click', () => {
+      const currentTheme = document.body.getAttribute('data-theme');
+      if (currentTheme === 'light') {
+        document.body.setAttribute('data-theme', 'dark');
+        themeIcon.textContent = '🌙';
+        themeLabel.textContent = 'Paris Night';
+      } else {
+        document.body.setAttribute('data-theme', 'light');
+        themeIcon.textContent = '☀️';
+        themeLabel.textContent = 'Paris Day';
+      }
+    });
+  </script>
+</body>
+</html>
