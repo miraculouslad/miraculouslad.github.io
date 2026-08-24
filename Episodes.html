@@ -9,7 +9,76 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
   
   <style>
-    /* CORE DESIGN SYSTEM (Reused from your homepage) */
+    
+/* ==========================================================================
+       WORK IN PROGRESS OVERLAY
+       ========================================================================== */
+    .wip-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.5); /* Dark semi-transparent background */
+      backdrop-filter: blur(12px); /* This blurs everything behind the overlay */
+      -webkit-backdrop-filter: blur(12px); /* Safari support */
+      z-index: 99999; /* Ensures it stays on top of the header and everything else */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .wip-message {
+      background-color: var(--bg-card);
+      padding: 3rem 2rem;
+      border-radius: var(--radius);
+      border: 3px solid var(--primary);
+      text-align: center;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+      max-width: 90%;
+      animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    }
+
+    .wip-message h2 {
+      color: var(--primary);
+      font-size: 2.2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .wip-message p {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 2rem;
+      color: var(--text-main);
+    }
+
+    .btn-home {
+      display: inline-block;
+      background-color: var(--primary);
+      color: #ffffff;
+      padding: 0.85rem 2rem;
+      border-radius: 30px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .btn-home:hover {
+      background-color: var(--primary-hover);
+      transform: translateY(-2px);
+    }
+
+    @keyframes popIn {
+      0% { transform: scale(0.8); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    /* Lock scrolling on the body while this overlay is active */
+    body {
+      overflow: hidden;
+    }
+
+/* CORE DESIGN SYSTEM (Reused from your homepage) */
     :root {
       --primary: #E60026;
       --primary-hover: #c40020;
@@ -101,6 +170,15 @@
   </style>
 </head>
 <body data-theme="light">
+
+<!-- WORK IN PROGRESS OVERLAY -->
+  <div class="wip-overlay">
+    <div class="wip-message">
+      <h2>🚧 Work In Progress 🚧</h2>
+      <p>You Will Access This Page Soon!</p>
+      <a href="index.html" class="btn-home">Return to Homepage</a>
+    </div>
+  </div>
 
   <!-- HEADER -->
   <header class="header">
@@ -309,7 +387,7 @@
             <div class="card-meta">Episode 13</div>
             <h3 class="card-title">Yaksi Gozen</h3>
             <p class="card-excerpt">While Adrien wonders how to be as surprising as Marinette, Kagami and Félix wonder how to avoid unpleasant surprises. But a supervillain will upset the plans of the four teenagers.</p>
-            <a href="https://t.me/miraculousseason5ep26/3" class="btn-watch">Watch Episode →</a>
+            <a href="https://t.me/miraculousseason6episodes/15" class="btn-watch">Watch Episode →</a>
           </div>
         </article>
 
@@ -462,7 +540,7 @@
 <article class="card">
           <div class="card-img-wrapper">
             <span class="badge">S06 E01</span>
-            <img src="CLimatiqueen.webp" alt="Nemesis Thumbnail" class="card-img">
+            <img src="Climatiqueen.webp" alt="Nemesis Thumbnail" class="card-img">
           </div>
           <div class="card-body">
             <div class="card-meta">Episode 01</div>
