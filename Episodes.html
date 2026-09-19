@@ -9,6 +9,52 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
   
   <style>
+
+/* ==========================================================================
+       SEASON QUICK NAVIGATION
+       ========================================================================== */
+    /* Enable smooth scrolling for the whole page */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    .season-nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 3rem;
+    }
+
+    .season-nav-link {
+      background-color: var(--bg-card);
+      color: var(--text-main);
+      border: 2px solid var(--border-color);
+      padding: 0.6rem 1.5rem;
+      border-radius: 30px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+      transition: all 0.3s ease;
+    }
+
+    .season-nav-link:hover {
+      background-color: var(--primary);
+      color: #ffffff;
+      border-color: var(--primary);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 15px rgba(230, 0, 38, 0.3);
+    }
+    
+    [data-theme="dark"] .season-nav-link:hover {
+      box-shadow: 0 8px 15px rgba(0, 255, 51, 0.2);
+    }
+
+    /* Prevents the sticky header from hiding the season title when clicked */
+    .season-section {
+      scroll-margin-top: 100px; 
+    }
     
 /* CORE DESIGN SYSTEM (Reused from your homepage) */
     :root {
