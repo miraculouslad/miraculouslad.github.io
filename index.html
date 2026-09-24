@@ -810,8 +810,20 @@ body {
        ========================================================================== -->
   <section class="hero-container">
     <div class="hero-carousel" id="heroCarousel">
-      
+
       <!-- Slide 1 -->
+      <div class="carousel-slide" style="background-image: url('Slide 1.jpg');">
+        <div class="hero-content">
+          <div class="badge-group">
+            <span class="badge badge-primary">Season 7</span>
+          </div>
+          <h1 class="hero-title">Miraculous Season 7 Global Premiere Schedule Revealed!</h1>
+          <p class="hero-desc">Check out the new Release Dates Now.</p>
+          <a href="read more 4.html" class="btn btn-primary">Read The Article Now →</a>
+        </div>
+      </div>
+      
+      <!-- Slide 2 -->
       <div class="carousel-slide active" style="background-image: url('Nemesis.jpg');">
         <div class="hero-content">
           <div class="badge-group">
@@ -824,7 +836,7 @@ body {
         </div>
       </div>
 
-      <!-- Slide 2 -->
+      <!-- Slide 3 -->
       <div class="carousel-slide" style="background-image: url('Season 7.jpg');">
         <div class="hero-content">
           <div class="badge-group">
@@ -834,18 +846,6 @@ body {
           <h1 class="hero-title">Season 7 Arriving November 2026!</h1>
           <p class="hero-desc">Dark secrets and unexpected alliances threaten Paris in the dramatic next chapter.</p>
           <a href="read more 2.html" class="btn btn-primary">Explore Season 7 News →</a>
-        </div>
-      </div>
-
-      <!-- Slide 3 -->
-      <div class="carousel-slide" style="background-image: url('Season 6.jpg');">
-        <div class="hero-content">
-          <div class="badge-group">
-            <span class="badge badge-primary">Full Recap</span>
-          </div>
-          <h1 class="hero-title">Season 6 Reaches Its Grand Finale</h1>
-          <p class="hero-desc">Relive all 26 episodes and review the full storyline before Season 7 premieres.</p>
-          <a href="read more.html" class="btn btn-primary">Read Full Recap →</a>
         </div>
       </div>
       
@@ -877,64 +877,264 @@ body {
   </section>
 
   <!-- ==========================================================================
-       COUNTDOWN BAR
-       ========================================================================== -->
-  <div class="mn-countdown-bar">
-  <div class="mn-banner-info">
-    <div class="mn-icon-box">
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="12" cy="12" r="10" fill="#e60026"/>
-        <path d="M12 2V22" stroke="#121214" stroke-width="1.5"/>
-        <circle cx="8" cy="8" r="1.5" fill="#121214"/>
-        <circle cx="16" cy="8" r="1.5" fill="#121214"/>
-        <circle cx="7" cy="14" r="1.5" fill="#121214"/>
-        <circle cx="17" cy="14" r="1.5" fill="#121214"/>
-        <circle cx="12" cy="18" r="1.5" fill="#121214"/>
-      </svg>
-    </div>
-    <div class="mn-banner-text">
-      <h3 class="mn-banner-title">Season 7 Episode 1</h3>
-      <!-- Replace your current subtitle line with this -->
-<span class="mn-banner-subtitle" id="mn-airing-time">Loading local air time...</span>
+     COUNTDOWN CONTAINER
+     ========================================================================== -->
+<div class="mn-countdown-wrapper">
 
+  <!-- COUNTDOWN BAR 1: Episode 1 and 2 -->
+  <div class="mn-countdown-bar" 
+       data-title="Season 7 Episode 1 and 2" 
+       data-subtitle="Airing On " 
+       data-target="2026-11-14T10:40:00+01:00">
+    <div class="mn-banner-info">
+      <div class="mn-icon-box">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://w3.org">
+          <circle cx="12" cy="12" r="10" fill="#e60026"/>
+          <path d="M12 2V22" stroke="#121214" stroke-width="1.5"/>
+          <circle cx="8" cy="8" r="1.5" fill="#121214"/>
+          <circle cx="16" cy="8" r="1.5" fill="#121214"/>
+          <circle cx="7" cy="14" r="1.5" fill="#121214"/>
+          <circle cx="17" cy="14" r="1.5" fill="#121214"/>
+          <circle cx="12" cy="18" r="1.5" fill="#121214"/>
+        </svg>
+      </div>
+      <div class="mn-banner-text">
+        <h3 class="mn-banner-title">Loading title...</h3>
+        <span class="mn-banner-subtitle">Loading local air time...</span>
+      </div>
+    </div>
+    <div class="mn-countdown-grid">
+      <div class="mn-time-card"><span class="mn-time-num class-days">00</span><span class="mn-time-label">DAYS</span></div>
+      <div class="mn-time-card"><span class="mn-time-num class-hours">00</span><span class="mn-time-label">HOURS</span></div>
+      <div class="mn-time-card"><span class="mn-time-num class-mins">00</span><span class="mn-time-label">MINS</span></div>
+      <div class="mn-time-card"><span class="mn-time-num class-secs">00</span><span class="mn-time-label">SECS</span></div>
     </div>
   </div>
 
-  <div class="mn-countdown-grid" id="mn-countdown-timer">
-    <div class="mn-time-card">
-      <span class="mn-time-num" id="mn-days">00</span>
-      <span class="mn-time-label">DAYS</span>
+  <!-- COUNTDOWN BAR 2: Episode 3 -->
+  <div class="mn-countdown-bar" 
+       data-title="Season 7 Episode 3" 
+       data-subtitle="Airing On " 
+       data-target="2026-11-21T10:40:00+01:00">
+    <div class="mn-banner-info">
+      <div class="mn-icon-box">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://w3.org">
+          <circle cx="12" cy="12" r="10" fill="#e60026"/>
+          <path d="M12 2V22" stroke="#121214" stroke-width="1.5"/>
+          <circle cx="8" cy="8" r="1.5" fill="#121214"/>
+          <circle cx="16" cy="8" r="1.5" fill="#121214"/>
+          <circle cx="7" cy="14" r="1.5" fill="#121214"/>
+          <circle cx="17" cy="14" r="1.5" fill="#121214"/>
+          <circle cx="12" cy="18" r="1.5" fill="#121214"/>
+        </svg>
+      </div>
+      <div class="mn-banner-text">
+        <h3 class="mn-banner-title">Loading title...</h3>
+        <span class="mn-banner-subtitle">Loading local air time...</span>
+      </div>
     </div>
-    <div class="mn-time-card">
-      <span class="mn-time-num" id="mn-hours">00</span>
-      <span class="mn-time-label">HOURS</span>
-    </div>
-    <div class="mn-time-card">
-      <span class="mn-time-num" id="mn-mins">00</span>
-      <span class="mn-time-label">MINS</span>
-    </div>
-    <div class="mn-time-card">
-      <span class="mn-time-num" id="mn-secs">00</span>
-      <span class="mn-time-label">SECS</span>
+    <div class="mn-countdown-grid">
+      <div class="mn-time-card"><span class="mn-time-num class-days">00</span><span class="mn-time-label">DAYS</span></div>
+      <div class="mn-time-card"><span class="mn-time-num class-hours">00</span><span class="mn-time-label">HOURS</span></div>
+      <div class="mn-time-card"><span class="mn-time-num class-mins">00</span><span class="mn-time-label">MINS</span></div>
+      <div class="mn-time-card"><span class="mn-time-num class-secs">00</span><span class="mn-time-label">SECS</span></div>
     </div>
   </div>
+
+  <!-- COUNTDOWN BAR 3: Episode 4 (Just added!) -->
+  <div class="mn-countdown-bar" 
+       data-title="Season 7 Episode 4" 
+       data-subtitle="Airing On " 
+       data-target="2026-11-26T10:40:00+01:00">
+    <div class="mn-banner-info">
+      <div class="mn-icon-box">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://w3.org">
+          <circle cx="12" cy="12" r="10" fill="#e60026"/>
+          <path d="M12 2V22" stroke="#121214" stroke-width="1.5"/>
+          <circle cx="8" cy="8" r="1.5" fill="#121214"/>
+          <circle cx="16" cy="8" r="1.5" fill="#121214"/>
+          <circle cx="7" cy="14" r="1.5" fill="#121214"/>
+          <circle cx="17" cy="14" r="1.5" fill="#121214"/>
+          <circle cx="12" cy="18" r="1.5" fill="#121214"/>
+        </svg>
+      </div>
+      <div class="mn-banner-text">
+        <h3 class="mn-banner-title">Loading title...</h3>
+        <span class="mn-banner-subtitle">Loading local air time...</span>
+      </div>
+    </div>
+    <div class="mn-countdown-grid">
+      <div class="mn-time-card"><span class="mn-time-num class-days">00</span><span class="mn-time-label">DAYS</span></div>
+      <div class="mn-time-card"><span class="mn-time-num class-hours">00</span><span class="mn-time-label">HOURS</span></div>
+      <div class="mn-time-card"><span class="mn-time-num class-mins">00</span><span class="mn-time-label">MINS</span></div>
+      <div class="mn-time-card"><span class="mn-time-num class-secs">00</span><span class="mn-time-label">SECS</span></div>
+    </div>
+  </div>
+
+<!-- COUNTDOWN BAR 4: Episode 5  -->
+  <div class="mn-countdown-bar" 
+       data-title="Season 7 Episode 5" 
+       data-subtitle="Airing On " 
+       data-target="2026-11-27T10:40:00+01:00">
+    <div class="mn-banner-info">
+      <div class="mn-icon-box">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://w3.org">
+          <circle cx="12" cy="12" r="10" fill="#e60026"/>
+          <path d="M12 2V22" stroke="#121214" stroke-width="1.5"/>
+          <circle cx="8" cy="8" r="1.5" fill="#121214"/>
+          <circle cx="16" cy="8" r="1.5" fill="#121214"/>
+          <circle cx="7" cy="14" r="1.5" fill="#121214"/>
+          <circle cx="17" cy="14" r="1.5" fill="#121214"/>
+          <circle cx="12" cy="18" r="1.5" fill="#121214"/>
+        </svg>
+      </div>
+      <div class="mn-banner-text">
+        <h3 class="mn-banner-title">Loading title...</h3>
+        <span class="mn-banner-subtitle">Loading local air time...</span>
+      </div>
+    </div>
+    <div class="mn-countdown-grid">
+      <div class="mn-time-card"><span class="mn-time-num class-days">00</span><span class="mn-time-label">DAYS</span></div>
+      <div class="mn-time-card"><span class="mn-time-num class-hours">00</span><span class="mn-time-label">HOURS</span></div>
+      <div class="mn-time-card"><span class="mn-time-num class-mins">00</span><span class="mn-time-label">MINS</span></div>
+      <div class="mn-time-card"><span class="mn-time-num class-secs">00</span><span class="mn-time-label">SECS</span></div>
+    </div>
+  </div>
+
+<!-- COUNTDOWN BAR 5: Episode 6  -->
+  <div class="mn-countdown-bar" 
+       data-title="Season 7 Episode 6" 
+       data-subtitle="Airing On " 
+       data-target="2026-11-30T10:40:00+01:00">
+    <div class="mn-banner-info">
+      <div class="mn-icon-box">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://w3.org">
+          <circle cx="12" cy="12" r="10" fill="#e60026"/>
+          <path d="M12 2V22" stroke="#121214" stroke-width="1.5"/>
+          <circle cx="8" cy="8" r="1.5" fill="#121214"/>
+          <circle cx="16" cy="8" r="1.5" fill="#121214"/>
+          <circle cx="7" cy="14" r="1.5" fill="#121214"/>
+          <circle cx="17" cy="14" r="1.5" fill="#121214"/>
+          <circle cx="12" cy="18" r="1.5" fill="#121214"/>
+        </svg>
+      </div>
+      <div class="mn-banner-text">
+        <h3 class="mn-banner-title">Loading title...</h3>
+        <span class="mn-banner-subtitle">Loading local air time...</span>
+      </div>
+    </div>
+    <div class="mn-countdown-grid">
+      <div class="mn-time-card"><span class="mn-time-num class-days">00</span><span class="mn-time-label">DAYS</span></div>
+      <div class="mn-time-card"><span class="mn-time-num class-hours">00</span><span class="mn-time-label">HOURS</span></div>
+      <div class="mn-time-card"><span class="mn-time-num class-mins">00</span><span class="mn-time-label">MINS</span></div>
+      <div class="mn-time-card"><span class="mn-time-num class-secs">00</span><span class="mn-time-label">SECS</span></div>
+    </div>
+  </div>
+
+<!-- COUNTDOWN BAR 6: Episode 7  -->
+  <div class="mn-countdown-bar" 
+       data-title="Season 7 Episode 7" 
+       data-subtitle="Airing On " 
+       data-target="2026-12-01T10:40:00+01:00">
+    <div class="mn-banner-info">
+      <div class="mn-icon-box">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://w3.org">
+          <circle cx="12" cy="12" r="10" fill="#e60026"/>
+          <path d="M12 2V22" stroke="#121214" stroke-width="1.5"/>
+          <circle cx="8" cy="8" r="1.5" fill="#121214"/>
+          <circle cx="16" cy="8" r="1.5" fill="#121214"/>
+          <circle cx="7" cy="14" r="1.5" fill="#121214"/>
+          <circle cx="17" cy="14" r="1.5" fill="#121214"/>
+          <circle cx="12" cy="18" r="1.5" fill="#121214"/>
+        </svg>
+      </div>
+      <div class="mn-banner-text">
+        <h3 class="mn-banner-title">Loading title...</h3>
+        <span class="mn-banner-subtitle">Loading local air time...</span>
+      </div>
+    </div>
+    <div class="mn-countdown-grid">
+      <div class="mn-time-card"><span class="mn-time-num class-days">00</span><span class="mn-time-label">DAYS</span></div>
+      <div class="mn-time-card"><span class="mn-time-num class-hours">00</span><span class="mn-time-label">HOURS</span></div>
+      <div class="mn-time-card"><span class="mn-time-num class-mins">00</span><span class="mn-time-label">MINS</span></div>
+      <div class="mn-time-card"><span class="mn-time-num class-secs">00</span><span class="mn-time-label">SECS</span></div>
+    </div>
+  </div>
+
+<!-- COUNTDOWN BAR 7: Episode 8  -->
+  <div class="mn-countdown-bar" 
+       data-title="Season 7 Episode 8" 
+       data-subtitle="Airing On " 
+       data-target="2026-12-02T10:40:00+01:00">
+    <div class="mn-banner-info">
+      <div class="mn-icon-box">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://w3.org">
+          <circle cx="12" cy="12" r="10" fill="#e60026"/>
+          <path d="M12 2V22" stroke="#121214" stroke-width="1.5"/>
+          <circle cx="8" cy="8" r="1.5" fill="#121214"/>
+          <circle cx="16" cy="8" r="1.5" fill="#121214"/>
+          <circle cx="7" cy="14" r="1.5" fill="#121214"/>
+          <circle cx="17" cy="14" r="1.5" fill="#121214"/>
+          <circle cx="12" cy="18" r="1.5" fill="#121214"/>
+        </svg>
+      </div>
+      <div class="mn-banner-text">
+        <h3 class="mn-banner-title">Loading title...</h3>
+        <span class="mn-banner-subtitle">Loading local air time...</span>
+      </div>
+    </div>
+    <div class="mn-countdown-grid">
+      <div class="mn-time-card"><span class="mn-time-num class-days">00</span><span class="mn-time-label">DAYS</span></div>
+      <div class="mn-time-card"><span class="mn-time-num class-hours">00</span><span class="mn-time-label">HOURS</span></div>
+      <div class="mn-time-card"><span class="mn-time-num class-mins">00</span><span class="mn-time-label">MINS</span></div>
+      <div class="mn-time-card"><span class="mn-time-num class-secs">00</span><span class="mn-time-label">SECS</span></div>
+    </div>
+  </div>
+
+
+
 </div>
 
-  <script>
-  (function() {
-    // Explicit Local Target Date: November 14, 2026 00:00:00
-const targetDate = new Date("2026-11-14T10:40:00+01:00").getTime();
+<script>
+(function() {
+  const localTimeFormatter = new Intl.DateTimeFormat(navigator.language, {
+    day: 'numeric',
+    month: 'long',
+    hour: 'numeric',
+    minute: '2-digit',
+    hour12: true
+  });
 
+  function updateAllTimers() {
+    const now = new Date().getTime();
 
-    function updateTimer() {
-      const now = new Date().getTime();
+    document.querySelectorAll('.mn-countdown-bar').forEach(bar => {
+      const targetStr = bar.getAttribute('data-target');
+      const titleStr = bar.getAttribute('data-title');
+      const subtitlePrefix = bar.getAttribute('data-subtitle');
+      
+      const broadcastDate = new Date(targetStr);
+      const targetDate = broadcastDate.getTime();
       const diff = targetDate - now;
 
+      const titleEl = bar.querySelector('.mn-banner-title');
+      const subtitleEl = bar.querySelector('.mn-banner-subtitle');
+      
+      if (titleEl.innerText === "Loading title...") {
+        titleEl.innerText = titleStr;
+        subtitleEl.innerText = subtitlePrefix + localTimeFormatter.format(broadcastDate);
+      }
+
+      const dEl = bar.querySelector('.class-days');
+      const hEl = bar.querySelector('.class-hours');
+      const mEl = bar.querySelector('.class-mins');
+      const sEl = bar.querySelector('.class-secs');
+
       if (diff <= 0) {
-        document.getElementById("mn-days").innerText = "00";
-        document.getElementById("mn-hours").innerText = "00";
-        document.getElementById("mn-mins").innerText = "00";
-        document.getElementById("mn-secs").innerText = "00";
+        dEl.innerText = "00";
+        hEl.innerText = "00";
+        mEl.innerText = "00";
+        sEl.innerText = "00";
         return;
       }
 
@@ -943,31 +1143,16 @@ const targetDate = new Date("2026-11-14T10:40:00+01:00").getTime();
       const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
       const secs = Math.floor((diff % (1000 * 60)) / 1000);
 
-      document.getElementById("mn-days").innerText = days < 10 ? '0' + days : days;
-      document.getElementById("mn-hours").innerText = hours < 10 ? '0' + hours : hours;
-      document.getElementById("mn-mins").innerText = mins < 10 ? '0' + mins : mins;
-      document.getElementById("mn-secs").innerText = secs < 10 ? '0' + secs : secs;
-    }
+      dEl.innerText = days < 10 ? '0' + days : days;
+      hEl.innerText = hours < 10 ? '0' + hours : hours;
+      mEl.innerText = mins < 10 ? '0' + mins : mins;
+      sEl.innerText = secs < 10 ? '0' + secs : secs;
+    });
+  }
 
-// 1. Define the absolute broadcast time (10:40 AM Spain Time / UTC+1)
-const broadcastDate = new Date("2026-11-14T10:40:00+01:00");
-
-// 2. Format the date and time to the visitor's local system settings
-const localTimeFormatter = new Intl.DateTimeFormat(navigator.language, {
-    day: 'numeric',
-    month: 'long',
-    hour: 'numeric',
-    minute: '2-digit',
-    hour12: true
-});
-
-// 3. Insert the localized text into the subtitle span
-document.getElementById("mn-airing-time").innerText = "Airing On " + localTimeFormatter.format(broadcastDate);
-
-
-    updateTimer();
-    setInterval(updateTimer, 1000);
-  })();
+  updateAllTimers();
+  setInterval(updateAllTimers, 1000);
+})();
 </script>
 
   <!-- ==========================================================================
@@ -982,8 +1167,24 @@ document.getElementById("mn-airing-time").innerText = "Airing On " + localTimeFo
       </div>
 
       <div class="cards-grid">
-       
+
         <!-- Card 1 -->
+        <article class="card">
+          <div class="card-img-wrapper">
+            <span class="badge badge-spoiler" style="position: absolute; top: 10px; left: 10px; z-index: 2;">Season 7</span>
+            <img src="Slide 1.jpg" alt="Eiffel Tower Paris" class="card-img">
+          </div>
+          <div class="card-body">
+            <div class="card-meta">
+              <span>Sept 24, 2026</span> • <span>4 min read</span>
+            </div>
+            <h3 class="card-title">Miraculous Season 7 Global Premiere Schedule Revealed!</h3>
+            <p class="card-excerpt">New Release Dates of Season 7 is Revealed.</p>
+            <a href="read more 3.html" style="color: var(--primary); font-weight: 700; font-size: 0.85rem;">Read Story →</a>
+          </div>
+        </article>
+        
+        <!-- Card 2 -->
         <article class="card">
           <div class="card-img-wrapper">
             <span class="badge badge-spoiler" style="position: absolute; top: 10px; left: 10px; z-index: 2;">Season 7</span>
@@ -999,7 +1200,7 @@ document.getElementById("mn-airing-time").innerText = "Airing On " + localTimeFo
           </div>
         </article>
 
-        <!-- Card 2 -->
+        <!-- Card 3 -->
         <article class="card">
           <div class="card-img-wrapper">
             <span class="badge badge-spoiler" style="position: absolute; top: 10px; left: 10px; z-index: 2;">Season 7 Leak</span>
@@ -1015,7 +1216,7 @@ document.getElementById("mn-airing-time").innerText = "Airing On " + localTimeFo
           </div>
         </article>
         
-        <!-- Card 3 -->
+        <!-- Card 4 -->
         <article class="card">
           <div class="card-img-wrapper">
             <span class="badge badge-spoiler" style="position: absolute; top: 10px; left: 10px; z-index: 2;">Season 6</span>
@@ -1031,7 +1232,7 @@ document.getElementById("mn-airing-time").innerText = "Airing On " + localTimeFo
           </div>
         </article>
       
-        <!-- Card 4 -->
+        <!-- Card 5 -->
         <article class="card">
           <div class="card-img-wrapper">
             <img src="chibi.png" alt="Action figure" class="card-img">
