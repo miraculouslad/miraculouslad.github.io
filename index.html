@@ -894,7 +894,9 @@ body {
     </div>
     <div class="mn-banner-text">
       <h3 class="mn-banner-title">Season 7 Episode 1</h3>
-      <span class="mn-banner-subtitle">"Airing On 21st November at 12:00 AM"</span>
+      <!-- Replace your current subtitle line with this -->
+<span class="mn-banner-subtitle" id="mn-airing-time">Loading local air time...</span>
+
     </div>
   </div>
 
@@ -920,7 +922,9 @@ body {
 
   <script>
   (function() {
-    const targetDate = new Date(2026, 10, 21, 0, 0, 0).getTime();
+    // Explicit Local Target Date: November 14, 2026 00:00:00
+const targetDate = new Date("2026-11-14T10:40:00+01:00").getTime();
+
 
     function updateTimer() {
       const now = new Date().getTime();
@@ -944,6 +948,22 @@ body {
       document.getElementById("mn-mins").innerText = mins < 10 ? '0' + mins : mins;
       document.getElementById("mn-secs").innerText = secs < 10 ? '0' + secs : secs;
     }
+
+// 1. Define the absolute broadcast time (10:40 AM Spain Time / UTC+1)
+const broadcastDate = new Date("2026-11-14T10:40:00+01:00");
+
+// 2. Format the date and time to the visitor's local system settings
+const localTimeFormatter = new Intl.DateTimeFormat(navigator.language, {
+    day: 'numeric',
+    month: 'long',
+    hour: 'numeric',
+    minute: '2-digit',
+    hour12: true
+});
+
+// 3. Insert the localized text into the subtitle span
+document.getElementById("mn-airing-time").innerText = "Airing On " + localTimeFormatter.format(broadcastDate);
+
 
     updateTimer();
     setInterval(updateTimer, 1000);
