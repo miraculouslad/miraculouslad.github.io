@@ -272,15 +272,18 @@
     }
 
 .image-container {
-  width: 100%;       /* Takes full width of its parent container */
-  max-width: 600px;  /* Prevents the image from becoming pixelated on massive screens */
-  margin: 0 auto;    /* Centers the image on the webpage */
+  width: 100%;
+  margin: 0 auto;
 }
 
 .full-responsive-img {
-  width: 100%;       /* Forces image to scale to container width */
-  height: auto;      /* Keeps the original 1:1 aspect ratio perfectly */
-  display: block;    /* Removes unexpected bottom spacing issues */
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: var(--radius);
+  margin-bottom: 2rem;
+  box-shadow: var(--shadow);
+  object-fit: contain;
 }
 
     .kwami-quote-box {
@@ -678,7 +681,8 @@ body {
         </div>
 
          <!-- Featured Image -->
-      <img src="Miraculous Release Dates.jpg" alt="Eiffel Tower Paris render" class="article-hero-img">
+      <img src="Miraculous Release Dates.jpg" class="full-responsive-img" alt="Miraculous Season 7 Release Dates">
+<p style="font-size:0.8rem; color:var(--text-muted); margin-top:0; margin-bottom:2rem;"><em>Image: Miraculous Release Dates.jpg</em></p>
         
         <h2>🌍 Disney Channel EMEA Premiere Dates</h2>
 
@@ -993,5 +997,3 @@ body {
 
 </body>
 </html>
-
-```
