@@ -1,0 +1,1044 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Miracle Power Prototype</title>
+
+<!-- SAME FONTS AS YOUR HOMEPAGE -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Poppins:wght@300;400;600;700&display=swap"
+    rel="stylesheet"
+>
+
+
+<style>
+
+/* =========================================================
+   SAME DESIGN VARIABLES AS YOUR WEBSITE
+========================================================= */
+
+:root {
+
+    --primary: #E60026;
+    --primary-hover: #c40020;
+
+    --secondary: #121212;
+
+    --accent-green: #00FF33;
+    --accent-gold: #FFD700;
+
+    --bg-main: #f8f9fc;
+    --bg-card: #ffffff;
+
+    --text-main: #1f2937;
+    --text-muted: #6b7280;
+
+    --border-color: #e5e7eb;
+
+    --radius: 16px;
+
+    --shadow:
+        0 10px 25px -5px rgba(230, 0, 38, 0.1),
+        0 8px 10px -6px rgba(0, 0, 0, 0.05);
+}
+
+
+/* =========================================================
+   DARK MODE — SAME CONCEPT AS YOUR SITE
+========================================================= */
+
+[data-theme="dark"] {
+
+    --primary: #00FF33;
+    --primary-hover: #00cc29;
+
+    --secondary: #1f2937;
+
+    --accent-green: #E60026;
+
+    --bg-main: #0b0f19;
+    --bg-card: #151c2c;
+
+    --text-main: #f3f4f6;
+    --text-muted: #9ca3af;
+
+    --border-color: #2d3748;
+
+    --shadow:
+        0 10px 25px -5px rgba(0, 255, 51, 0.1),
+        0 8px 10px -6px rgba(0, 0, 0, 0.5);
+}
+
+
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+
+/* =========================================================
+   BODY
+========================================================= */
+
+body {
+
+    font-family: 'Poppins', sans-serif;
+
+    background-color: var(--bg-main);
+
+    color: var(--text-main);
+
+    line-height: 1.6;
+
+    padding: 30px 20px;
+
+    background-image:
+        radial-gradient(
+            rgba(0,0,0,0.05) 2px,
+            transparent 2px
+        );
+
+    background-size: 24px 24px;
+}
+
+
+/* =========================================================
+   PROTOTYPE CONTAINER
+
+   Same max width as your site's main content.
+========================================================= */
+
+.prototype {
+
+    max-width: 1100px;
+
+    margin: 0 auto;
+
+}
+
+
+/* =========================================================
+   SECTION HEADER
+
+   Matches your existing .section-header
+========================================================= */
+
+.section-header {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    margin-bottom: 20px;
+
+    border-bottom:
+        2px solid var(--border-color);
+
+    padding-bottom: 12px;
+
+}
+
+
+.section-title {
+
+    font-family: 'Montserrat', sans-serif;
+
+    font-size: 1.5rem;
+
+    font-weight: 800;
+
+    position: relative;
+
+}
+
+
+.section-title::after {
+
+    content: "";
+
+    position: absolute;
+
+    bottom: -15px;
+
+    left: 0;
+
+    width: 50px;
+
+    height: 3px;
+
+    background-color: var(--primary);
+
+}
+
+
+.section-badge {
+
+    background:
+        rgba(230, 0, 38, 0.5);
+
+    color: white;
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    padding: 3px 10px;
+
+    border-radius: 50px;
+
+    letter-spacing: 2px;
+
+    border:
+        1px solid rgba(255,255,255,0.2);
+
+    backdrop-filter: blur(10px);
+
+}
+
+
+/* =========================================================
+   MIRACLE POWER CARD
+========================================================= */
+
+.miracle-power-card {
+
+    position: relative;
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1.45fr)
+        minmax(300px, 0.75fr);
+
+    background:
+        var(--bg-card);
+
+    border:
+        1px solid var(--border-color);
+
+    border-radius:
+        var(--radius);
+
+    overflow: hidden;
+
+    box-shadow:
+        var(--shadow);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+
+}
+
+
+/* TOP RED ACCENT */
+
+.miracle-power-card::before {
+
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+    right: 0;
+
+    height: 4px;
+
+    background:
+        var(--primary);
+
+    z-index: 5;
+
+}
+
+
+/* =========================================================
+   LEFT — TRAILER
+========================================================= */
+
+.miracle-video {
+
+    padding: 20px;
+
+}
+
+
+/* VIDEO BOX */
+
+.video-wrapper {
+
+    position: relative;
+
+    width: 100%;
+
+    aspect-ratio: 16 / 9;
+
+    background:
+        #000;
+
+    border-radius:
+        12px;
+
+    overflow: hidden;
+
+    border:
+        1px solid var(--border-color);
+
+}
+
+
+/* YOUTUBE IFRAME */
+
+.video-wrapper iframe {
+
+    width: 100%;
+
+    height: 100%;
+
+    border: 0;
+
+    display: block;
+
+}
+
+
+/* VIDEO LABEL */
+
+.video-label {
+
+    margin-top: 10px;
+
+    font-size: 0.72rem;
+
+    color: var(--text-muted);
+
+    letter-spacing: 1px;
+
+    text-transform: uppercase;
+
+}
+
+
+/* =========================================================
+   RIGHT — COUNTDOWN
+========================================================= */
+
+.miracle-info {
+
+    padding: 25px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    text-align: center;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(230,0,38,0.08),
+            rgba(0,255,51,0.04)
+        );
+
+    border-left:
+        1px solid var(--border-color);
+
+}
+
+
+/* SMALL LABEL */
+
+.miracle-label {
+
+    font-family:
+        'Montserrat',
+        sans-serif;
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+    letter-spacing: 2px;
+
+    color:
+        var(--primary);
+
+    margin-bottom: 8px;
+
+}
+
+
+/* TITLE */
+
+.miracle-title {
+
+    font-family:
+        'Montserrat',
+        sans-serif;
+
+    font-size: 1.8rem;
+
+    font-weight: 900;
+
+    margin-bottom: 6px;
+
+}
+
+
+/* SUBTITLE */
+
+.miracle-subtitle {
+
+    font-size: 0.82rem;
+
+    color:
+        var(--text-muted);
+
+    margin-bottom: 22px;
+
+}
+
+
+/* =========================================================
+   COUNTDOWN GRID
+========================================================= */
+
+.miracle-countdown {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 8px;
+
+    width: 100%;
+
+}
+
+
+/* TIMER CARD */
+
+.miracle-count-box {
+
+    background:
+        #121212;
+
+    border:
+        2px solid var(--accent-green);
+
+    border-radius:
+        10px;
+
+    padding:
+        10px 4px;
+
+    box-shadow:
+        0 4px 12px
+        rgba(0,0,0,0.35);
+
+}
+
+
+/* NUMBER */
+
+.miracle-count-num {
+
+    display: block;
+
+    font-family:
+        'Montserrat',
+        sans-serif;
+
+    font-size:
+        1.55rem;
+
+    font-weight:
+        800;
+
+    line-height:
+        1;
+
+    color:
+        var(--accent-green);
+
+    text-shadow:
+        0 0 8px
+        rgba(0,255,51,0.7);
+
+}
+
+
+/* LABEL */
+
+.miracle-count-label {
+
+    display: block;
+
+    margin-top: 6px;
+
+    font-size:
+        0.55rem;
+
+    font-weight:
+        700;
+
+    color:
+        #d1d5db;
+
+    letter-spacing:
+        0.5px;
+
+}
+
+
+/* =========================================================
+   RELEASE DATE
+========================================================= */
+
+.release-date {
+
+    margin-top: 18px;
+
+    font-family:
+        'Montserrat',
+        sans-serif;
+
+    font-size:
+        0.75rem;
+
+    font-weight:
+        700;
+
+    letter-spacing:
+        1px;
+
+    color:
+        var(--text-muted);
+
+}
+
+
+/* =========================================================
+   COLLABORATION LABEL
+========================================================= */
+
+.collaboration {
+
+    margin-top: 15px;
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 7px;
+
+    padding:
+        6px 12px;
+
+    border:
+        1px solid var(--border-color);
+
+    border-radius:
+        50px;
+
+    font-size:
+        0.7rem;
+
+    font-weight:
+        700;
+
+    color:
+        var(--text-muted);
+
+}
+
+
+/* =========================================================
+   AFTER RELEASE
+========================================================= */
+
+.released {
+
+    font-family:
+        'Montserrat',
+        sans-serif;
+
+    font-size:
+        1.4rem;
+
+    font-weight:
+        900;
+
+    color:
+        var(--primary);
+
+    line-height:
+        1.3;
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 750px) {
+
+    .miracle-power-card {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .miracle-info {
+
+        border-left:
+            none;
+
+        border-top:
+            1px solid var(--border-color);
+
+    }
+
+}
+
+
+@media (max-width: 500px) {
+
+    body {
+
+        padding:
+            20px 12px;
+
+    }
+
+
+    .section-header {
+
+        gap: 9px;
+
+    }
+
+
+    .section-title {
+
+        font-size:
+            1.2rem;
+
+    }
+
+
+    .miracle-video {
+
+        padding:
+            14px;
+
+    }
+
+
+    .miracle-info {
+
+        padding:
+            20px 14px;
+
+    }
+
+
+    .miracle-count-num {
+
+        font-size:
+            1.2rem;
+
+    }
+
+
+    .miracle-count-label {
+
+        font-size:
+            0.48rem;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="prototype">
+
+
+    <!-- =====================================================
+         SECTION HEADER
+    ====================================================== -->
+
+    <div class="section-header">
+
+        <div class="section-title">
+            MIRACLE POWER
+        </div>
+
+        <div class="section-badge">
+            COMING SOON
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         MAIN CARD
+    ====================================================== -->
+
+    <div class="miracle-power-card">
+
+
+        <!-- =================================================
+             LEFT — YOUTUBE TRAILER
+        ================================================== -->
+
+        <div class="miracle-video">
+
+            <div class="video-wrapper">
+
+                <!--
+                =================================================
+                REPLACE VIDEO_ID WITH THE REAL YOUTUBE ID
+
+                Example:
+https://www.youtube.com/watch?v=H_MQm4hgmbU
+
+                becomes:
+
+                https://www.youtube.com/embed/ABC123
+                =================================================
+                -->
+
+                <iframe
+
+                    src="https://www.youtube.com/embed/H_MQm4hgmbU"
+
+                    title="Miracle Power Official Trailer"
+
+                    allow="
+                        accelerometer;
+                        autoplay;
+                        clipboard-write;
+                        encrypted-media;
+                        gyroscope;
+                        picture-in-picture;
+                        web-share
+                    "
+
+                    allowfullscreen>
+
+                </iframe>
+
+            </div>
+
+
+            <div class="video-label">
+
+                🎬 Official Trailer • YouTube
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+             RIGHT — COUNTDOWN
+        ================================================== -->
+
+        <div class="miracle-info">
+
+
+            <div class="miracle-label">
+
+                UPCOMING SPECIAL
+
+            </div>
+
+
+            <div class="miracle-title">
+
+                MIRACLE POWER
+
+            </div>
+
+
+            <div class="miracle-subtitle">
+
+                Miraculous × BYD
+
+            </div>
+
+
+            <!-- COUNTDOWN -->
+
+            <div
+                class="miracle-countdown"
+                id="miracleCountdown"
+            >
+
+
+                <div class="miracle-count-box">
+
+                    <span
+                        class="miracle-count-num"
+                        id="mpDays"
+                    >
+                        00
+                    </span>
+
+                    <span
+                        class="miracle-count-label"
+                    >
+                        DAYS
+                    </span>
+
+                </div>
+
+
+                <div class="miracle-count-box">
+
+                    <span
+                        class="miracle-count-num"
+                        id="mpHours"
+                    >
+                        00
+                    </span>
+
+                    <span
+                        class="miracle-count-label"
+                    >
+                        HOURS
+                    </span>
+
+                </div>
+
+
+                <div class="miracle-count-box">
+
+                    <span
+                        class="miracle-count-num"
+                        id="mpMinutes"
+                    >
+                        00
+                    </span>
+
+                    <span
+                        class="miracle-count-label"
+                    >
+                        MINUTES
+                    </span>
+
+                </div>
+
+
+                <div class="miracle-count-box">
+
+                    <span
+                        class="miracle-count-num"
+                        id="mpSeconds"
+                    >
+                        00
+                    </span>
+
+                    <span
+                        class="miracle-count-label"
+                    >
+                        SECONDS
+                    </span>
+
+                </div>
+
+
+            </div>
+
+
+            <div class="release-date">
+
+                SEPTEMBER 28, 2026 • 12:00 PM IST
+
+            </div>
+
+
+            <div class="collaboration">
+
+                🐞 MIRACULOUS × BYD
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<script>
+
+/* =========================================================
+   MIRACLE POWER RELEASE
+========================================================= */
+
+const miraclePowerRelease =
+    new Date(
+        "2026-09-28T12:00:00+05:30"
+    ).getTime();
+
+
+/* =========================================================
+   COUNTDOWN
+========================================================= */
+
+function updateMiraclePower() {
+
+    const now =
+        new Date().getTime();
+
+    const difference =
+        miraclePowerRelease - now;
+
+
+    /* -----------------------------------------------
+       RELEASED
+    ------------------------------------------------ */
+
+    if (difference <= 0) {
+
+        document.getElementById(
+            "miracleCountdown"
+        ).innerHTML = `
+
+            <div class="released">
+
+                ✨ MIRACLE POWER<br>
+                IS HERE
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    /* -----------------------------------------------
+       CALCULATE TIME
+    ------------------------------------------------ */
+
+    const days =
+        Math.floor(
+            difference /
+            (1000 * 60 * 60 * 24)
+        );
+
+
+    const hours =
+        Math.floor(
+            (
+                difference %
+                (1000 * 60 * 60 * 24)
+            )
+            /
+            (1000 * 60 * 60)
+        );
+
+
+    const minutes =
+        Math.floor(
+            (
+                difference %
+                (1000 * 60 * 60)
+            )
+            /
+            (1000 * 60)
+        );
+
+
+    const seconds =
+        Math.floor(
+            (
+                difference %
+                (1000 * 60)
+            )
+            /
+            1000
+        );
+
+
+    /* -----------------------------------------------
+       UPDATE
+    ------------------------------------------------ */
+
+    document.getElementById("mpDays")
+        .textContent =
+        String(days).padStart(2, "0");
+
+
+    document.getElementById("mpHours")
+        .textContent =
+        String(hours).padStart(2, "0");
+
+
+    document.getElementById("mpMinutes")
+        .textContent =
+        String(minutes).padStart(2, "0");
+
+
+    document.getElementById("mpSeconds")
+        .textContent =
+        String(seconds).padStart(2, "0");
+
+}
+
+
+/* =========================================================
+   START
+========================================================= */
+
+updateMiraclePower();
+
+setInterval(
+    updateMiraclePower,
+    1000
+);
+
+</script>
+
+
+</body>
+
+</html>
