@@ -520,6 +520,200 @@
   }
 
     /* ==========================================================================
+       MIRACLE POWER FEATURE
+       ========================================================================== */
+    .miracle-power-section {
+      width: 100%;
+      max-width: 1100px;
+      margin: 0 auto 3rem auto;
+      padding: 0 1.5rem;
+    }
+
+    .miracle-power-card {
+      display: grid;
+      grid-template-columns: minmax(0, 1.8fr) minmax(300px, 1fr);
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-top: 3px solid var(--primary);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .miracle-power-video {
+      padding: 1.25rem;
+      min-width: 0;
+    }
+
+    .miracle-power-video-frame {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      border-radius: 12px;
+      background: #000;
+      border: 1px solid var(--border-color);
+    }
+
+    .miracle-power-video-frame iframe {
+      width: 100%;
+      height: 100%;
+      display: block;
+      border: 0;
+    }
+
+    .miracle-power-video-label {
+      margin-top: 0.65rem;
+      color: var(--text-muted);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+    }
+
+    .miracle-power-info {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 2rem 1.5rem;
+      border-left: 1px solid var(--border-color);
+      background: linear-gradient(145deg, var(--bg-card), rgba(230, 0, 38, 0.035));
+    }
+
+    [data-theme="dark"] .miracle-power-info {
+      background: linear-gradient(145deg, var(--bg-card), rgba(0, 255, 51, 0.035));
+    }
+
+    .miracle-power-kicker {
+      color: var(--primary);
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 900;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+    }
+
+    .miracle-power-name {
+      font-size: clamp(1.45rem, 2.5vw, 2rem);
+      line-height: 1.1;
+      margin-bottom: 0.55rem;
+      letter-spacing: -0.4px;
+    }
+
+    .miracle-power-subtitle {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      margin-bottom: 1.4rem;
+    }
+
+    .miracle-power-countdown {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(55px, 1fr));
+      gap: 0.55rem;
+      width: 100%;
+      max-width: 340px;
+    }
+
+    .miracle-power-time {
+      min-width: 0;
+      padding: 0.65rem 0.35rem 0.55rem;
+      border-radius: 10px;
+      background: #121212;
+      border: 2px solid #00FF33;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.28);
+    }
+
+    .miracle-power-time-number {
+      display: block;
+      color: #00FF33;
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(1.15rem, 2.4vw, 1.65rem);
+      font-weight: 900;
+      line-height: 1;
+      text-shadow: 0 0 8px rgba(0, 255, 51, 0.65);
+    }
+
+    .miracle-power-time-label {
+      display: block;
+      color: #d1d5db;
+      font-size: 0.55rem;
+      font-weight: 700;
+      letter-spacing: 0.4px;
+      margin-top: 0.35rem;
+      text-transform: uppercase;
+    }
+
+    [data-theme="dark"] .miracle-power-time {
+      background: #000;
+      border-color: #E60026;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.85);
+    }
+
+    [data-theme="dark"] .miracle-power-time-number {
+      color: #E60026;
+      text-shadow: 0 0 9px rgba(230, 0, 38, 0.75);
+    }
+
+    .miracle-power-release {
+      margin-top: 1.15rem;
+      color: var(--text-muted);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.65px;
+      text-transform: uppercase;
+    }
+
+    .miracle-power-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      margin-top: 0.85rem;
+      padding: 0.42rem 0.75rem;
+      border: 1px solid var(--border-color);
+      border-radius: 999px;
+      color: var(--text-muted);
+      font-size: 0.7rem;
+      font-weight: 700;
+    }
+
+    .miracle-power-live {
+      color: var(--primary);
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: 1.1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    @media (max-width: 800px) {
+      .miracle-power-card {
+        grid-template-columns: 1fr;
+      }
+
+      .miracle-power-info {
+        border-left: 0;
+        border-top: 1px solid var(--border-color);
+      }
+    }
+
+    @media (max-width: 500px) {
+      .miracle-power-section {
+        padding: 0 1rem;
+      }
+
+      .miracle-power-video {
+        padding: 0.8rem;
+      }
+
+      .miracle-power-info {
+        padding: 1.5rem 1rem;
+      }
+    }
+
+    /* ==========================================================================
        5. MAIN CONTENT LAYOUT (FEED + SIDEBAR)
        ========================================================================== */
     .main-layout {
@@ -873,6 +1067,59 @@ body {
         <button class="carousel-dot" data-slide="3" aria-label="Slide 4"></button>
       </div>
 
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       MIRACLE POWER FEATURE
+       ========================================================================== -->
+  <section class="miracle-power-section" aria-labelledby="miraclePowerTitle">
+    <div class="section-header">
+      <h2 class="section-title" id="miraclePowerTitle">MIRACLE POWER</h2>
+      <span class="badge badge-primary">COMING SOON</span>
+    </div>
+
+    <div class="miracle-power-card">
+      <div class="miracle-power-video">
+        <div class="miracle-power-video-frame">
+          <iframe
+            src="https://www.youtube.com/embed/H_MQm4hgmbU?rel=0&modestbranding=1"
+            title="Miraculous Miracle Power Official Trailer"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen>
+          </iframe>
+        </div>
+        <div class="miracle-power-video-label">🎬 Official Trailer • YouTube</div>
+      </div>
+
+      <div class="miracle-power-info">
+        <div class="miracle-power-kicker">Upcoming Special</div>
+        <h3 class="miracle-power-name">MIRACLE POWER</h3>
+        <p class="miracle-power-subtitle">Miraculous × BYD</p>
+
+        <div class="miracle-power-countdown" id="miraclePowerCountdown">
+          <div class="miracle-power-time">
+            <span class="miracle-power-time-number" id="mpDays">00</span>
+            <span class="miracle-power-time-label">Days</span>
+          </div>
+          <div class="miracle-power-time">
+            <span class="miracle-power-time-number" id="mpHours">00</span>
+            <span class="miracle-power-time-label">Hours</span>
+          </div>
+          <div class="miracle-power-time">
+            <span class="miracle-power-time-number" id="mpMinutes">00</span>
+            <span class="miracle-power-time-label">Minutes</span>
+          </div>
+          <div class="miracle-power-time">
+            <span class="miracle-power-time-number" id="mpSeconds">00</span>
+            <span class="miracle-power-time-label">Seconds</span>
+          </div>
+        </div>
+
+        <div class="miracle-power-release">September 28, 2026 • 12:00 PM IST</div>
+        <div class="miracle-power-badge">🐞 MIRACULOUS × BYD</div>
+      </div>
     </div>
   </section>
 
