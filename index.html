@@ -1117,7 +1117,7 @@ body {
           </div>
         </div>
 
-        <div class="miracle-power-release">September 28, 2026 • 12:00 PM IST</div>
+        <div class="miracle-power-release">September 28, 2026 </div>
         <div class="miracle-power-badge">🐞 MIRACULOUS × BYD</div>
       </div>
     </div>
@@ -1596,6 +1596,41 @@ body {
        JAVASCRIPT LOGIC
        ========================================================================== -->
   <script>
+    
+    // 0. Miracle Power Countdown
+    (function() {
+      const miraclePowerRelease = new Date('2026-09-28T00:00:00+05:30').getTime();
+      const countdown = document.getElementById('miraclePowerCountdown');
+      const daysEl = document.getElementById('mpDays');
+      const hoursEl = document.getElementById('mpHours');
+      const minutesEl = document.getElementById('mpMinutes');
+      const secondsEl = document.getElementById('mpSeconds');
+
+      if (!countdown || !daysEl || !hoursEl || !minutesEl || !secondsEl) return;
+
+      function updateMiraclePowerCountdown() {
+        const diff = miraclePowerRelease - Date.now();
+
+        if (diff <= 0) {
+          countdown.innerHTML = '<div class="miracle-power-live">✨ MIRACLE POWER IS HERE</div>';
+          return;
+        }
+
+        const days = Math.floor(diff / 86400000);
+        const hours = Math.floor((diff % 86400000) / 3600000);
+        const minutes = Math.floor((diff % 3600000) / 60000);
+        const seconds = Math.floor((diff % 60000) / 1000);
+
+        daysEl.textContent = String(days).padStart(2, '0');
+        hoursEl.textContent = String(hours).padStart(2, '0');
+        minutesEl.textContent = String(minutes).padStart(2, '0');
+        secondsEl.textContent = String(seconds).padStart(2, '0');
+      }
+
+      updateMiraclePowerCountdown();
+      setInterval(updateMiraclePowerCountdown, 1000);
+    })();
+
     // 1. Theme Switcher Logic
     const themeToggleBtn = document.getElementById('themeToggle');
     const themeIcon = document.getElementById('themeIcon');
