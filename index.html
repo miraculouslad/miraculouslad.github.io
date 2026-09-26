@@ -935,7 +935,8 @@
       }
     }
 
-    /* ==========================================================================
+
+/* ==========================================================================
    MOBILE RESPONSIVE PATCH
    Keeps the desktop design unchanged; only improves small-screen layout.
    ========================================================================== */
@@ -1295,6 +1296,46 @@
   }
 }
 
+/* MOBILE LANGUAGE SELECTOR
+   The same existing language selector is moved into the sticky header on phones.
+   Desktop keeps it in the sidebar. */
+.mobile-lang-switcher {
+  display: none;
+}
+
+@media (max-width: 650px) {
+  .mobile-lang-switcher {
+    display: block;
+    order: 4;
+    width: 100%;
+  }
+
+  .mobile-lang-switcher .lang-switcher {
+    width: 100%;
+    margin: 0.2rem 0 0.15rem;
+    padding: 8px 10px;
+    gap: 4px;
+    border-radius: 9px;
+  }
+
+  .mobile-lang-switcher .lang-switcher label {
+    font-size: 11px;
+  }
+
+  .mobile-lang-switcher .lang-switcher select {
+    width: 100%;
+    min-height: 36px;
+    padding: 7px 9px;
+    font-size: 13px;
+  }
+}
+
+@media (min-width: 651px) {
+  #languageSwitcher {
+    display: flex;
+  }
+}
+
 /* GOOGLE TRANSLATE BANNER OVERRIDE */
 .goog-te-banner-frame,
 .goog-te-banner-frame.skiptranslate,
@@ -1344,6 +1385,8 @@ body {
         <li><a href="Episodes.html">Episodes</a></li>
         <li><a href="https://www.youtube.com/@SN_DESIGNED_AMV">Miraculous AMVs</a></li>
       </ul>
+
+      <div id="mobileLangSwitcher" class="mobile-lang-switcher"></div>
 
       <div class="controls-group">
         <!-- Theme Toggle (Ladybug / Cat Noir) -->
@@ -1862,7 +1905,7 @@ body {
 <div id="langSwitcherContainer"></div>
 
     <!-- Language Selector Dropdown -->
-<div class="lang-switcher notranslate" translate="no">
+<div class="lang-switcher notranslate" translate="no" id="languageSwitcher">
   <label for="langSelect" id="lblLanguage">Language / Bhasha:</label>
   <select id="langSelect" class="notranslate" translate="no">
     <option value="en">🇬🇧 ENGLISH</option>
@@ -2128,6 +2171,39 @@ body {
       attributes: true, 
       attributeFilter: ['style'] 
     });
+  </script>
+
+  <script>
+    // Keep the existing language selector in the sidebar on desktop,
+    // but place that same selector at the top of the sticky header on mobile.
+    (function () {
+      const selector = document.getElementById('languageSwitcher');
+      const mobileHost = document.getElementById('mobileLangSwitcher');
+      const desktopHost = document.getElementById('langSwitcherContainer');
+      if (!selector || !mobileHost || !desktopHost) return;
+
+      const mobileQuery = window.matchMedia('(max-width: 650px)');
+
+      function placeLanguageSelector() {
+        if (mobileQuery.matches) {
+          if (selector.parentElement !== mobileHost) {
+            mobileHost.appendChild(selector);
+          }
+        } else {
+          if (selector.parentElement !== desktopHost) {
+            desktopHost.appendChild(selector);
+          }
+        }
+      }
+
+      placeLanguageSelector();
+
+      if (mobileQuery.addEventListener) {
+        mobileQuery.addEventListener('change', placeLanguageSelector);
+      } else {
+        mobileQuery.addListener(placeLanguageSelector);
+      }
+    })();
   </script>
 
   <script src="translator.js"></script>
