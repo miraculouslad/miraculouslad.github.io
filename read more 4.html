@@ -564,6 +564,44 @@
     }
 
 
+/* Language selector: desktop stays in its original sidebar position. */
+#langSwitcherContainer {
+  width: 100%;
+}
+
+.lang-switcher {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  background: #f0f4f8;
+  padding: 12px 15px;
+  border-radius: 8px;
+  border: 1px solid #d0dbe5;
+}
+
+.lang-switcher label {
+  font-size: 13px;
+  font-weight: 700;
+  color: #333;
+}
+
+.lang-switcher select {
+  width: 100%;
+  padding: 8px 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  cursor: pointer;
+  background-color: #fff;
+  color: #222;
+  font-weight: 600;
+  font-family: Poppins, sans-serif;
+}
+
+.lang-switcher-top {
+  display: none;
+}
+
 /* ========================================================================== 
    MOBILE RESPONSIVE FIX — ARTICLE PAGE
    Keeps the desktop design/content unchanged and fixes mobile overflow/nav.
@@ -654,6 +692,48 @@
     white-space: nowrap;
     font-size: .78rem;
     padding: .15rem 0;
+  }
+
+  /* Language selector: place it directly below the mobile navigation,
+     so visitors can change language before reading the article. */
+  .lang-switcher-top {
+    display: block;
+    order: 4;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    padding: .15rem 0 .25rem;
+  }
+
+  .lang-switcher-top #langSwitcherContainer {
+    width: 100%;
+  }
+
+  .lang-switcher-top .lang-switcher {
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    gap: .3rem;
+    padding: .45rem .55rem;
+    border-radius: 9px;
+  }
+
+  .lang-switcher-top .lang-switcher label {
+    font-size: .68rem;
+  }
+
+  .lang-switcher-top .lang-switcher select,
+  .lang-switcher-top .goog-te-combo {
+    width: 100%;
+    max-width: 100%;
+    min-height: 34px;
+    padding: .4rem .55rem;
+    border: 1px solid var(--border);
+    border-radius: 7px;
+    background: var(--card-bg);
+    color: var(--text);
+    font-family: Poppins, sans-serif;
+    font-size: .76rem;
   }
 
   /* The original article uses a 2-column desktop grid. On phones it must
@@ -965,9 +1045,12 @@ body {
 
       <ul class="nav-links">
         <li><a href="index.html">Latest News</a></li>
-        <li><a href="Episodes.html">Episodes</a></li>
+        <li><a href="https://t.me/miraculousseason6episodes">Episodes</a></li>
         <li><a href="https://www.youtube.com/@SN_DESIGNED_AMV">Miraculous AMVs</a></li>
       </ul>
+
+      <!-- Language selector is moved here on mobile so it stays at the top. -->
+      <div id="langSwitcherTop" class="lang-switcher-top"></div>
 
       <div class="controls-group">
         <button class="toggle-btn" id="themeToggle" title="Toggle Day/Night Mode">
@@ -1158,7 +1241,32 @@ body {
         </div>
       </div>
 
-<div id="langSwitcherContainer"></div>
+<div id="langSwitcherContainer">
+  <div class="lang-switcher notranslate" translate="no">
+    <label for="langSelect" id="lblLanguage">Language / Bhasha:</label>
+    <select id="langSelect" class="notranslate" translate="no">
+      <option value="en">🇬🇧 ENGLISH</option>
+      <option value="pt">🇧🇷 BRASIL</option>
+      <option value="cs">🇨🇿 CZECH</option>
+      <option value="de">🇩🇪 DEUTSCH</option>
+      <option value="es">🇪🇸 ESPAÑOL</option>
+      <option value="fr">🇫🇷 FRANÇAIS</option>
+      <option value="el">🇬🇷 ΕΛΛΗΝΙΚΑ</option>
+      <option value="it">🇮🇹 ITALIANO</option>
+      <option value="es">🇲🇽 LATINO</option>
+      <option value="nl">🇳🇱 NEDERLANDS</option>
+      <option value="pl">🇵🇱 POLSKI</option>
+      <option value="pt">🇵🇹 PORTUGAL</option>
+      <option value="ru">🇷🇺 РУССКИЙ</option>
+      <option value="ro">🇷🇴 ROMÂNĂ</option>
+      <option value="sr">🇷🇸 SRPSKI</option>
+      <option value="tr">🇹🇷 TÜRKÇE</option>
+      <option value="ko">🇰🇷 한국어</option>
+      <option value="ja">🇯🇵 日本語</option>
+      <option value="hi">🇮🇳 HINDI / हिंदी</option>
+    </select>
+  </div>
+</div>
 
       <!-- Related News Widget -->
       <div class="widget">
@@ -1341,9 +1449,73 @@ body {
     });
   </script>
 
+<!-- Hidden Google Translate Element -->
+<div id="google_translate_element" style="display:none;"></div>
+
+<script type="text/javascript">
+  function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+      pageLanguage: 'en',
+      autoDisplay: false
+    }, 'google_translate_element');
+  }
+</script>
+<script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+<script>
+  // Connect the visible language menu to Google Translate.
+  document.getElementById('langSelect').addEventListener('change', function () {
+    const selectedLang = this.value;
+
+    document.cookie = "googtrans=/en/" + selectedLang + "; path=/";
+    document.cookie = "googtrans=/en/" + selectedLang + "; domain=" + window.location.hostname + "; path=/";
+
+    const googleCombo = document.querySelector('.goog-te-combo');
+    if (googleCombo) {
+      googleCombo.value = selectedLang;
+      googleCombo.dispatchEvent(new Event('change'));
+    } else {
+      window.location.reload();
+    }
+  });
+
+  const bodyObserver = new MutationObserver(() => {
+    if (document.body.style.top && document.body.style.top !== '0px') {
+      document.body.style.top = '0px';
+    }
+  });
+
+  bodyObserver.observe(document.body, {
+    attributes: true,
+    attributeFilter: ['style']
+  });
+</script>
+
 <script src="translator.js"></script>
 
 <script src="theme and translator.js"></script>
+
+<script>
+  // Keep the existing language selector in the sidebar on desktop, but move
+  // that same selector into the header on mobile. No duplicate selector is created.
+  (function () {
+    const source = document.getElementById('langSwitcherContainer');
+    const mobileTarget = document.getElementById('langSwitcherTop');
+    const originalParent = source ? source.parentElement : null;
+    if (!source || !mobileTarget || !originalParent) return;
+
+    function placeLanguageSelector() {
+      if (window.innerWidth <= 900) {
+        if (source.parentElement !== mobileTarget) mobileTarget.appendChild(source);
+      } else {
+        if (source.parentElement !== originalParent) originalParent.insertBefore(source, originalParent.firstChild);
+      }
+    }
+
+    placeLanguageSelector();
+    window.addEventListener('resize', placeLanguageSelector);
+  })();
+</script>
 
 </body>
 </html>
