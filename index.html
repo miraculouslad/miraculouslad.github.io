@@ -1301,6 +1301,11 @@ body {
         <button class="carousel-dot" data-slide="3" aria-label="Slide 4"></button>
       </div>
 
+
+
+    </div>
+  </section>
+
       <section class="season7-home-section" aria-labelledby="season7TeaserTitle">
   <div class="section-header">
     <h2 class="section-title" id="season7TeaserTitle">SEASON 7 TEASER</h2>
@@ -1319,7 +1324,7 @@ body {
     <div class="season7-home-info">
       <div class="season7-home-kicker">Miraculous Ladybug</div>
       <h3 class="season7-home-title">Season 7 Is Coming!</h3>
-      <p class="season7-home-subtitle">Countdown to the Season 7 premiere</p>
+      <p class="season7-home-subtitle">Countdown to the Season 7 short teaser</p>
 
       <div class="season7-countdown">
         <div class="season7-time"><span class="season7-time-num" id="s7Days">00</span><span class="season7-time-label">Days</span></div>
@@ -1328,13 +1333,10 @@ body {
         <div class="season7-time"><span class="season7-time-num" id="s7Seconds">00</span><span class="season7-time-label">Seconds</span></div>
       </div>
 
-      <div class="season7-release">Teaser &amp; Traler • November 09, 2026 • 10:00 AM EST</div>
+      <div class="season7-release" id="season7ReleaseTime">Teaser releases • October 09, 2026 • 7:30 PM IST</div>
     </div>
   </div>
 </section>
-
-    </div>
-  </section>
 
   <!-- ==========================================================================
      COUNTDOWN CONTAINER
@@ -2037,7 +2039,9 @@ body {
     document.body.style.overflow = 'hidden';
     video.play().catch(function () { status.textContent = 'Click play to start'; });
 
-    const targetDate = new Date('2026-11-14T10:40:00+01:00').getTime();
+    const targetDate = new Date('2026-10-9T19:30:00+05:30').getTime();
+
+    const releaseTime = new Date(targetDate);
 
     function updateSeason7Countdown() {
       const remaining = Math.max(0, targetDate - Date.now());
@@ -2050,6 +2054,17 @@ body {
       document.getElementById('s7Hours').textContent = String(hours).padStart(2, '0');
       document.getElementById('s7Minutes').textContent = String(minutes).padStart(2, '0');
       document.getElementById('s7Seconds').textContent = String(seconds).padStart(2, '0');
+
+      const localRelease = new Intl.DateTimeFormat(navigator.language, {
+        dateStyle: 'long',
+        timeStyle: 'short',
+        timeZoneName: 'short'
+      }).format(releaseTime);
+
+      const releaseEl = document.getElementById('season7ReleaseTime');
+      if (releaseEl) {
+        releaseEl.textContent = `Teaser releases • ${localRelease} (your local time)`;
+      }
     }
 
     updateSeason7Countdown();
