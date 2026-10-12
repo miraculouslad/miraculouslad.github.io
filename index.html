@@ -1177,11 +1177,44 @@ body {
 .season7-popup-btn:hover { background:#E60026; border-color:#E60026; }
 .season7-popup-bottom { display:flex; align-items:center; justify-content:space-between; gap:12px; padding:11px 15px; color:#fff; background:#111; font-size:.8rem; }
 .season7-popup-bottom strong { color:#E60026; }
+.season7-popup[hidden] { display: none !important; }
+.season7-popup-btn:focus-visible, .toggle-btn:focus-visible, .carousel-arrow:focus-visible, .carousel-dot:focus-visible {
+  outline: 3px solid #FFD700;
+  outline-offset: 3px;
+}
+@media (max-width: 650px) {
+  .season7-popup-top { top: 8px; left: 8px; right: 8px; align-items: flex-start; }
+  .season7-popup-title { max-width: 44%; line-height: 1.25; }
+  .season7-popup-actions { gap: 5px; }
+  .season7-popup-btn { padding: 7px 9px; font-size: 11px; }
+  .season7-popup video { max-height: 76vh; }
+  .controls-group { gap: 0.35rem; }
+}
+
 .season7-home-section { width:100%; max-width:1100px; margin:0 auto 2.5rem; padding:0 1.5rem; }
 .season7-home-card { display:grid; grid-template-columns:minmax(0,1.65fr) minmax(290px,.85fr); overflow:hidden; background:var(--bg-card); border:1px solid var(--border-color); border-top:3px solid var(--primary); border-radius:var(--radius); box-shadow:var(--shadow); }
 .season7-home-video { padding:1.1rem; }
 .season7-home-video-frame { position:relative; aspect-ratio:16/9; overflow:hidden; border-radius:12px; background:#000; }
-.season7-home-video-frame video { display:block; width:100%; height:100%; object-fit:contain; background:#000; }
+.season7-home-video-frame video { object-fit: contain; }
+.season7-teaser-countdown-card .season7-home-info { min-width: 0; }
+.season7-teaser-countdown-card .season7-countdown { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.season7-home-video-frame video,
+.season7-home-video-frame iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  background: #000;
+}
+.season7-home-video-frame iframe { position: absolute; inset: 0; }
+.season7-video-only .season7-home-card { grid-template-columns: minmax(0, 1fr); }
+.season7-video-only .season7-home-video { min-width: 0; }
+#mainContent.spoiler-protected .card-excerpt {
+  filter: blur(5px);
+  user-select: none;
+}
+#mainContent.spoiler-protected .card-excerpt:hover { filter: blur(0); }
+
 .season7-home-info { display:flex; flex-direction:column; align-items:center; justify-content:center; padding:2rem 1.4rem; text-align:center; border-left:1px solid var(--border-color); background:linear-gradient(145deg,var(--bg-card),rgba(230,0,38,.04)); }
 .season7-home-kicker { margin-bottom:.6rem; color:var(--primary); font:900 .72rem Montserrat,sans-serif; letter-spacing:2px; text-transform:uppercase; }
 .season7-home-title { margin-bottom:.45rem; font-size:clamp(1.35rem,2.5vw,2rem); line-height:1.12; }
@@ -1238,8 +1271,8 @@ body {
 
       <div class="controls-group">
         <!-- Theme Toggle (Ladybug / Cat Noir) -->
-        <button class="toggle-btn" id="themeToggle" title="Toggle Day/Night Mode">
-          <span id="themeIcon">☀️</span> <span id="themeLabel">Paris Day</span>
+        <button class="toggle-btn" id="themeToggle" type="button" title="Toggle Day/Night Mode" aria-pressed="false">
+          <span id="themeIcon" aria-hidden="true">☀️</span> <span id="themeLabel">Paris Day</span>
         </button>
       </div>
     </div>
@@ -1252,7 +1285,7 @@ body {
     <div class="hero-carousel" id="heroCarousel">
 
       <!-- Slide 1 -->
-      <div class="carousel-slide" style="background-image: url('Slide 1.jpg');">
+      <div class="carousel-slide active" style="background-image: url('Slide 1.jpg');">
         <div class="hero-content">
           <div class="badge-group">
             <span class="badge badge-primary">Season 7</span>
@@ -1264,7 +1297,7 @@ body {
       </div>
       
       <!-- Slide 2 -->
-      <div class="carousel-slide active" style="background-image: url('Nemesis.jpg');">
+      <div class="carousel-slide" style="background-image: url('Nemesis.jpg');">
         <div class="hero-content">
           <div class="badge-group">
             <span class="badge badge-primary">Breaking News</span>
@@ -1298,7 +1331,7 @@ body {
         <button class="carousel-dot active" data-slide="0" aria-label="Slide 1"></button>
         <button class="carousel-dot" data-slide="1" aria-label="Slide 2"></button>
         <button class="carousel-dot" data-slide="2" aria-label="Slide 3"></button>
-        <button class="carousel-dot" data-slide="3" aria-label="Slide 4"></button>
+        
       </div>
 
 
@@ -1306,40 +1339,67 @@ body {
     </div>
   </section>
 
-       <section class="season7-home-section" aria-labelledby="season7TeaserTitle">
+<!-- Season 7 Teaser 3 countdown + the same local video used in the popup -->
+<section class="season7-home-section" aria-labelledby="season7Teaser3CountdownTitle">
   <div class="section-header">
-    <h2 class="section-title" id="season7TeaserTitle">SEASON 7 TEASER</h2>
-    <span class="badge badge-spoiler">EXCLUSIVE</span>
+    <h2 class="section-title" id="season7Teaser3CountdownTitle">SEASON 7 TEASER 3</h2>
+    <span class="badge badge-spoiler">COMING SOON</span>
   </div>
-
-  <div class="season7-home-card">
+  <div class="season7-home-card season7-teaser-countdown-card">
     <div class="season7-home-video">
       <div class="season7-home-video-frame">
-        <video controls playsinline preload="metadata">
+        <video id="season7Teaser3Preview" controls muted playsinline preload="metadata" aria-label="Season 7 Teaser 3 preview">
           <source src="Season 7 Teaser 3.mp4" type="video/mp4">
         </video>
       </div>
     </div>
-
     <div class="season7-home-info">
-      <div class="season7-home-kicker">Miraculous Ladybug</div>
-      <h3 class="season7-home-title">Season 7 Is Coming!</h3>
-      <p class="season7-home-subtitle">Countdown to the Season 7 short teaser</p>
-
-      <div class="season7-countdown">
-        <div class="season7-time"><span class="season7-time-num" id="s7Days">00</span><span class="season7-time-label">Days</span></div>
-        <div class="season7-time"><span class="season7-time-num" id="s7Hours">00</span><span class="season7-time-label">Hours</span></div>
-        <div class="season7-time"><span class="season7-time-num" id="s7Minutes">00</span><span class="season7-time-label">Minutes</span></div>
-        <div class="season7-time"><span class="season7-time-num" id="s7Seconds">00</span><span class="season7-time-label">Seconds</span></div>
+      <span class="season7-home-kicker">Coming Soon</span>
+      <h3 class="season7-home-title">TEASER 3 REVEAL</h3>
+      <div class="season7-countdown" id="season7Teaser3Countdown" role="timer" aria-live="off" data-target="2026-10-13T18:30:00+05:30">
+        <div class="season7-time"><span class="season7-time-num" data-unit="days">00</span><span class="season7-time-label">Days</span></div>
+        <div class="season7-time"><span class="season7-time-num" data-unit="hours">00</span><span class="season7-time-label">Hours</span></div>
+        <div class="season7-time"><span class="season7-time-num" data-unit="minutes">00</span><span class="season7-time-label">Minutes</span></div>
+        <div class="season7-time"><span class="season7-time-num" data-unit="seconds">00</span><span class="season7-time-label">Seconds</span></div>
       </div>
-
-      <div class="season7-release" id="season7ReleaseTime">Teaser releases • October 13, 2026 • 6:30 PM IST</div>
+      <p class="season7-release" id="season7Teaser3CountdownStatus">The teaser drops October 13 at 6:30 PM IST.</p>
     </div>
   </div>
 </section>
+<script>
+(() => {
+  const countdown = document.getElementById('season7Teaser3Countdown');
+  const status = document.getElementById('season7Teaser3CountdownStatus');
+  if (!countdown) return;
+  const target = new Date(countdown.dataset.target).getTime();
+  const fields = Object.fromEntries(['days', 'hours', 'minutes', 'seconds'].map(unit => [unit, countdown.querySelector(`[data-unit="${unit}"]`)]));
+  function updateTeaserCountdown() {
+    const remaining = target - Date.now();
+    if (remaining <= 0) {
+      Object.values(fields).forEach(el => { if (el) el.textContent = '00'; });
+      if (status) status.textContent = 'The teaser release time has arrived!';
+      if (countdown.dataset.finished !== 'true') {
+        countdown.dataset.finished = 'true';
+        countdown.setAttribute('aria-label', 'Season 7 Teaser 3 release time has arrived');
+      }
+      return;
+    }
+    const values = {
+      days: Math.floor(remaining / 86400000),
+      hours: Math.floor((remaining % 86400000) / 3600000),
+      minutes: Math.floor((remaining % 3600000) / 60000),
+      seconds: Math.floor((remaining % 60000) / 1000)
+    };
+    Object.entries(values).forEach(([unit, value]) => {
+      if (fields[unit]) fields[unit].textContent = String(value).padStart(2, '0');
+    });
+  }
+  updateTeaserCountdown();
+  window.setInterval(updateTeaserCountdown, 1000);
+})();
+</script>
 
-
-      <section class="season7-home-section" aria-labelledby="season7TeaserTitle">
+<section class="season7-home-section season7-video-only" aria-labelledby="season7TeaserTitle">
   <div class="section-header">
     <h2 class="section-title" id="season7TeaserTitle">SEASON 7 TEASER</h2>
     <span class="badge badge-spoiler">EXCLUSIVE</span>
@@ -1360,9 +1420,9 @@ body {
   </div>
 </section>
 
-        <section class="season7-home-section" aria-labelledby="season7TeaserTitle">
+        <section class="season7-home-section season7-video-only" aria-labelledby="season7Teaser2Title">
   <div class="section-header">
-    <h2 class="section-title" id="season7TeaserTitle">SEASON 7 TEASER 2</h2>
+    <h2 class="section-title" id="season7Teaser2Title">SEASON 7 TEASER 2</h2>
     <span class="badge badge-spoiler">EXCLUSIVE</span>
   </div>
   <div class="season7-home-card">
@@ -1381,6 +1441,8 @@ body {
   </div>
 </section>
 
+
+
   <!-- ==========================================================================
      COUNTDOWN CONTAINER
      ========================================================================== -->
@@ -1393,7 +1455,7 @@ body {
        data-target="2026-11-14T10:00:00-05:00">
     <div class="mn-banner-info">
       <div class="mn-icon-box">
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://w3.org">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <circle cx="12" cy="12" r="10" fill="#e60026"/>
           <path d="M12 2V22" stroke="#121214" stroke-width="1.5"/>
           <circle cx="8" cy="8" r="1.5" fill="#121214"/>
@@ -1423,7 +1485,7 @@ body {
        data-target="2026-11-20T10:00:00-05:00">
     <div class="mn-banner-info">
       <div class="mn-icon-box">
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://w3.org">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <circle cx="12" cy="12" r="10" fill="#e60026"/>
           <path d="M12 2V22" stroke="#121214" stroke-width="1.5"/>
           <circle cx="8" cy="8" r="1.5" fill="#121214"/>
@@ -1453,7 +1515,7 @@ body {
        data-target="2026-11-20T10:00:00-05:00">
     <div class="mn-banner-info">
       <div class="mn-icon-box">
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://w3.org">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <circle cx="12" cy="12" r="10" fill="#e60026"/>
           <path d="M12 2V22" stroke="#121214" stroke-width="1.5"/>
           <circle cx="8" cy="8" r="1.5" fill="#121214"/>
@@ -1483,7 +1545,7 @@ body {
        data-target="2026-11-20T10:00:00-05:00">
     <div class="mn-banner-info">
       <div class="mn-icon-box">
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://w3.org">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <circle cx="12" cy="12" r="10" fill="#e60026"/>
           <path d="M12 2V22" stroke="#121214" stroke-width="1.5"/>
           <circle cx="8" cy="8" r="1.5" fill="#121214"/>
@@ -1513,7 +1575,7 @@ body {
        data-target="2026-11-20T10:00:00-05:00">
     <div class="mn-banner-info">
       <div class="mn-icon-box">
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://w3.org">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <circle cx="12" cy="12" r="10" fill="#e60026"/>
           <path d="M12 2V22" stroke="#121214" stroke-width="1.5"/>
           <circle cx="8" cy="8" r="1.5" fill="#121214"/>
@@ -1543,7 +1605,7 @@ body {
        data-target="2026-12-01T10:40:00+01:00">
     <div class="mn-banner-info">
       <div class="mn-icon-box">
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://w3.org">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <circle cx="12" cy="12" r="10" fill="#e60026"/>
           <path d="M12 2V22" stroke="#121214" stroke-width="1.5"/>
           <circle cx="8" cy="8" r="1.5" fill="#121214"/>
@@ -1573,7 +1635,7 @@ body {
        data-target="2026-12-02T10:40:00+01:00">
     <div class="mn-banner-info">
       <div class="mn-icon-box">
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://w3.org">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <circle cx="12" cy="12" r="10" fill="#e60026"/>
           <path d="M12 2V22" stroke="#121214" stroke-width="1.5"/>
           <circle cx="8" cy="8" r="1.5" fill="#121214"/>
@@ -1636,10 +1698,8 @@ body {
       const sEl = bar.querySelector('.class-secs');
 
       if (diff <= 0) {
-        dEl.innerText = "00";
-        hEl.innerText = "00";
-        mEl.innerText = "00";
-        sEl.innerText = "00";
+        dEl.innerText = hEl.innerText = mEl.innerText = sEl.innerText = "00";
+        if (subtitleEl) subtitleEl.innerText = "Released • " + localTimeFormatter.format(broadcastDate);
         return;
       }
 
@@ -1838,102 +1898,135 @@ body {
        JAVASCRIPT LOGIC
        ========================================================================== -->
   <script>
-
-    // 1. Theme Switcher Logic
-    const themeToggleBtn = document.getElementById('themeToggle');
-    const themeIcon = document.getElementById('themeIcon');
-    const themeLabel = document.getElementById('themeLabel');
-
-    themeToggleBtn.addEventListener('click', () => {
-      const currentTheme = document.body.getAttribute('data-theme');
-      if (currentTheme === 'light') {
-        document.body.setAttribute('data-theme', 'dark');
-        themeIcon.textContent = '🌙';
-        themeLabel.textContent = 'Paris Night';
-      } else {
-        document.body.setAttribute('data-theme', 'light');
-        themeIcon.textContent = '☀️';
-        themeLabel.textContent = 'Paris Day';
+    // Theme, spoiler protection, and hero carousel.
+    (() => {
+      const themeToggleBtn = document.getElementById('themeToggle');
+      const themeIcon = document.getElementById('themeIcon');
+      const themeLabel = document.getElementById('themeLabel');
+      if (themeToggleBtn) {
+        themeToggleBtn.addEventListener('click', () => {
+          const isDark = document.body.getAttribute('data-theme') !== 'dark';
+          document.body.setAttribute('data-theme', isDark ? 'dark' : 'light');
+          if (themeIcon) themeIcon.textContent = isDark ? '🌙' : '☀️';
+          if (themeLabel) themeLabel.textContent = isDark ? 'Paris Night' : 'Paris Day';
+          themeToggleBtn.setAttribute('aria-pressed', String(isDark));
+        });
       }
-    });
 
-    // 2. Spoiler Shield Toggle Logic
-    const spoilerToggleBtn = document.getElementById('spoilerToggle');
-    const spoilerLabel = document.getElementById('spoilerLabel');
-    const mainContent = document.getElementById('mainContent');
-    let spoilersHidden = true;
-
-    spoilerToggleBtn.addEventListener('click', () => {
-      spoilersHidden = !spoilersHidden;
-      if (spoilersHidden) {
-        mainContent.classList.add('spoiler-protected');
-        spoilerLabel.textContent = 'HIDDEN';
-        spoilerLabel.style.color = '#8b5cf6';
-      } else {
-        mainContent.classList.remove('spoiler-protected');
-        spoilerLabel.textContent = 'REVEALED';
-        spoilerLabel.style.color = '#ef4444';
+      const spoilerToggleBtn = document.getElementById('spoilerToggle');
+      const spoilerLabel = document.getElementById('spoilerLabel');
+      const mainContent = document.getElementById('mainContent');
+      if (spoilerToggleBtn && mainContent) {
+        let spoilersHidden = mainContent.classList.contains('spoiler-protected');
+        const syncSpoilerControl = () => {
+          if (spoilerLabel) spoilerLabel.textContent = spoilersHidden ? 'HIDDEN' : 'REVEALED';
+          spoilerToggleBtn.setAttribute('aria-pressed', String(spoilersHidden));
+          spoilerToggleBtn.title = spoilersHidden ? 'Reveal spoiler text' : 'Hide spoiler text';
+        };
+        syncSpoilerControl();
+        spoilerToggleBtn.addEventListener('click', () => {
+          spoilersHidden = !spoilersHidden;
+          mainContent.classList.toggle('spoiler-protected', spoilersHidden);
+          syncSpoilerControl();
+        });
       }
-    });
 
-    // 3. Hero Carousel Swapping Logic
-    (function() {
       const carousel = document.getElementById('heroCarousel');
       if (!carousel) return;
-
-      const slides = carousel.querySelectorAll('.carousel-slide');
-      const dots = carousel.querySelectorAll('.carousel-dot');
+      const slides = Array.from(carousel.querySelectorAll('.carousel-slide'));
+      const dots = Array.from(carousel.querySelectorAll('.carousel-dot'));
       const prevBtn = document.getElementById('heroPrevBtn');
       const nextBtn = document.getElementById('heroNextBtn');
+      if (!slides.length) return;
 
-      let currentIndex = 0;
-      const autoInterval = 4000; // Change slide every 4 seconds
-      let timer;
+      // Align the dots to the actual slides and never bind an invalid index.
+      dots.forEach((dot, index) => {
+        if (index >= slides.length) dot.remove();
+      });
+      const usableDots = Array.from(carousel.querySelectorAll('.carousel-dot')).slice(0, slides.length);
+      let currentIndex = Math.max(0, slides.findIndex(slide => slide.classList.contains('active')));
+      let timer = null;
+      const autoInterval = 5000;
 
       function showSlide(index) {
-        slides[currentIndex].classList.remove('active');
-        dots[currentIndex].classList.remove('active');
-
-        currentIndex = (index + slides.length) % slides.length;
-
-        slides[currentIndex].classList.add('active');
-        dots[currentIndex].classList.add('active');
+        currentIndex = ((index % slides.length) + slides.length) % slides.length;
+        slides.forEach((slide, i) => {
+          slide.classList.toggle('active', i === currentIndex);
+          slide.setAttribute('aria-hidden', String(i !== currentIndex));
+        });
+        usableDots.forEach((dot, i) => {
+          dot.classList.toggle('active', i === currentIndex);
+          dot.setAttribute('aria-current', i === currentIndex ? 'true' : 'false');
+        });
       }
-
+      function stopTimer() {
+        if (timer !== null) { window.clearInterval(timer); timer = null; }
+      }
       function startTimer() {
         stopTimer();
-        timer = setInterval(() => {
-          showSlide(currentIndex + 1);
-        }, autoInterval);
+        if (slides.length > 1) timer = window.setInterval(() => showSlide(currentIndex + 1), autoInterval);
       }
-
-      function stopTimer() {
-        if (timer) clearInterval(timer);
-      }
-
-      // Event Controls
-      nextBtn.addEventListener('click', () => {
-        showSlide(currentIndex + 1);
-        startTimer();
-      });
-
-      prevBtn.addEventListener('click', () => {
-        showSlide(currentIndex - 1);
-        startTimer();
-      });
-
-      dots.forEach((dot, index) => {
-        dot.addEventListener('click', () => {
-          showSlide(index);
-          startTimer();
-        });
-      });
-
-      // Pause slide change when hovering mouse over carousel
+      if (nextBtn) nextBtn.addEventListener('click', () => { showSlide(currentIndex + 1); startTimer(); });
+      if (prevBtn) prevBtn.addEventListener('click', () => { showSlide(currentIndex - 1); startTimer(); });
+      usableDots.forEach((dot, index) => dot.addEventListener('click', () => { showSlide(index); startTimer(); }));
       carousel.addEventListener('mouseenter', stopTimer);
       carousel.addEventListener('mouseleave', startTimer);
-
+      carousel.addEventListener('focusin', stopTimer);
+      carousel.addEventListener('focusout', startTimer);
+      showSlide(currentIndex);
       startTimer();
+    })();
+  </script>
+
+  <script>
+    // Teaser popup controls. Autoplay is muted because browsers block reliable autoplay with sound.
+    (() => {
+      const popup = document.getElementById('season7Popup');
+      const video = document.getElementById('season7PopupVideo');
+      const closeBtn = document.getElementById('season7CloseBtn');
+      const soundBtn = document.getElementById('season7SoundBtn');
+      const status = document.getElementById('season7PopupStatus');
+      if (!popup) return;
+
+      function closePopup() {
+        popup.classList.add('hidden');
+        popup.setAttribute('aria-hidden', 'true');
+        if (video) { video.pause(); }
+        document.body.style.overflow = '';
+      }
+      if (closeBtn) closeBtn.addEventListener('click', closePopup);
+      if (soundBtn && video) {
+        soundBtn.addEventListener('click', async () => {
+          if (video.muted) {
+            video.muted = false;
+            video.volume = 1;
+            try {
+              await video.play();
+              soundBtn.textContent = '🔇 Mute';
+              if (status) status.textContent = 'Sound on';
+            } catch (err) {
+              video.muted = true;
+              soundBtn.textContent = '🔊 Unmute';
+              if (status) status.textContent = 'Press play to start audio';
+            }
+          } else {
+            video.muted = true;
+            soundBtn.textContent = '🔊 Unmute';
+            if (status) status.textContent = 'Muted';
+          }
+        });
+        video.addEventListener('error', () => {
+          if (status) status.textContent = 'Video could not load. You can close this popup.';
+        });
+        video.addEventListener('playing', () => {
+          if (status) status.textContent = video.muted ? 'Playing automatically (muted)' : 'Playing with sound';
+        });
+      }
+      document.addEventListener('keydown', event => {
+        if (event.key === 'Escape' && !popup.classList.contains('hidden')) closePopup();
+      });
+      // Keep the page behind the modal from scrolling while it is open.
+      document.body.style.overflow = 'hidden';
     })();
   </script>
 
@@ -1951,7 +2044,8 @@ body {
   <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
   <script>
-    document.getElementById('langSelect').addEventListener('change', function () {
+    const languageSelect = document.getElementById('langSelect');
+    if (languageSelect) languageSelect.addEventListener('change', function () {
       const selectedLang = this.value;
 
       document.cookie = "googtrans=/en/" + selectedLang + "; path=/";
@@ -2014,47 +2108,7 @@ body {
   <script src="translator.js"></script>
   <script src="theme and translator.js"></script>
 
-  <script>
-// Independent Season 7 teaser countdown: runs even if another page script fails.
-(function () {
-  const targetDate = new Date('2026-10-13T18:30:00+05:30').getTime();
-  const daysEl = document.getElementById('s7Days');
-  const hoursEl = document.getElementById('s7Hours');
-  const minutesEl = document.getElementById('s7Minutes');
-  const secondsEl = document.getElementById('s7Seconds');
-  const releaseEl = document.getElementById('season7ReleaseTime');
-  const titleEl = document.getElementById('season7TeaserTitle');
 
-  if (!daysEl || !hoursEl || !minutesEl || !secondsEl) {
-    console.error('Season 7 countdown: one or more countdown elements are missing.');
-    return;
-  }
-
-  const releaseTime = new Date(targetDate);
-  if (releaseEl) {
-    const localRelease = new Intl.DateTimeFormat(navigator.language, {
-      dateStyle: 'long', timeStyle: 'short', timeZoneName: 'short'
-    }).format(releaseTime);
-    releaseEl.textContent = `Teaser releases • ${localRelease} (your local time)`;
-  }
-
-  function updateSeason7Countdown() {
-    const remaining = targetDate - Date.now();
-    if (remaining <= 0) {
-      daysEl.textContent = hoursEl.textContent = minutesEl.textContent = secondsEl.textContent = '00';
-      if (titleEl) titleEl.textContent = 'SEASON 7 TEASER IS OUT!';
-      return;
-    }
-    daysEl.textContent = String(Math.floor(remaining / 86400000)).padStart(2, '0');
-    hoursEl.textContent = String(Math.floor((remaining % 86400000) / 3600000)).padStart(2, '0');
-    minutesEl.textContent = String(Math.floor((remaining % 3600000) / 60000)).padStart(2, '0');
-    secondsEl.textContent = String(Math.floor((remaining % 60000) / 1000)).padStart(2, '0');
-  }
-
-  updateSeason7Countdown();
-  window.setInterval(updateSeason7Countdown, 1000);
-})();
-</script>
 
 
 
