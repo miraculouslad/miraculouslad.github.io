@@ -1228,6 +1228,48 @@ body {
 @media (max-width:500px) { .season7-home-section { padding:0 1rem; } .season7-popup { padding:8px; } .season7-popup-box { border-radius:12px; } }
 
   </style>
+
+  </style>
+
+<style id="maintenance-screen-styles">
+  #maintenance-screen {
+    position: fixed; inset: 0; z-index: 2147483647; display: grid; place-items: center;
+    min-height: 100vh; padding: 28px 20px; box-sizing: border-box; overflow: auto;
+    color: #f8f7ff; text-align: center;
+    background: radial-gradient(ellipse at 50% 0%, rgba(110, 76, 190, .32), transparent 55%),
+                linear-gradient(145deg, #10101d 0%, #17152b 52%, #0b0b14 100%);
+    font-family: inherit;
+  }
+  #maintenance-screen * { box-sizing: border-box; }
+  #maintenance-screen .maintenance-card { width: min(100%, 620px); padding: clamp(28px, 6vw, 52px);
+    border: 1px solid rgba(255,255,255,.15); border-radius: 24px;
+    background: rgba(255,255,255,.055); box-shadow: 0 24px 80px rgba(0,0,0,.32); backdrop-filter: blur(12px); }
+  #maintenance-screen .maintenance-mark { width: 72px; height: 72px; margin: 0 auto 22px; display: grid; place-items: center;
+    border-radius: 22px; background: linear-gradient(135deg, #f7d65b, #e77ba8 55%, #8c79f4); color: #171326; font-size: 32px; font-weight: 900; }
+  #maintenance-screen .maintenance-kicker { margin: 0 0 12px; color: #e9cfff; font-size: 12px; font-weight: 800; letter-spacing: .22em; text-transform: uppercase; }
+  #maintenance-screen h1 { margin: 0; font-size: clamp(30px, 6vw, 48px); line-height: 1.08; letter-spacing: -.035em; }
+  #maintenance-screen .maintenance-copy { max-width: 440px; margin: 18px auto 0; color: rgba(248,247,255,.78); font-size: 16px; line-height: 1.7; }
+  #maintenance-screen .maintenance-line { width: 150px; height: 4px; margin: 30px auto 0; overflow: hidden; border-radius: 99px; background: rgba(255,255,255,.14); }
+  #maintenance-screen .maintenance-line span { display: block; width: 42%; height: 100%; border-radius: inherit; background: linear-gradient(90deg, #f7d65b, #e77ba8, #a99bff); animation: maintenance-progress 1.6s ease-in-out infinite alternate; }
+  #maintenance-screen .maintenance-foot { margin: 26px 0 0; color: rgba(248,247,255,.5); font-size: 12px; letter-spacing: .04em; }
+  @keyframes maintenance-progress { from { transform: translateX(0); } to { transform: translateX(210%); } }
+  @media (prefers-reduced-motion: reduce) { #maintenance-screen .maintenance-line span { animation: none; margin-left: 29%; } }
+</style>
+
+</head>
+<body data-theme="light">
+  <!-- TEMPORARY MAINTENANCE SCREEN: remove this block and its style to restore the website. -->
+  <main id="maintenance-screen" role="status" aria-live="polite">
+    <div class="maintenance-card">
+      <div class="maintenance-mark" aria-hidden="true">MN</div>
+      <p class="maintenance-kicker">Miraculous News Network</p>
+      <h1>We’ll be back soon!</h1>
+      <p class="maintenance-copy">We’re doing a little work behind the scenes to make the site even better. The website is temporarily unavailable while we make these updates. Please check back soon!</p>
+      <div class="maintenance-line" aria-hidden="true"><span></span></div>
+      <p class="maintenance-foot">TEMPORARILY OFFLINE FOR MAINTENANCE</p>
+    </div>
+  </main>
+  
 </head>
 <body data-theme="light">
 <div class="season7-popup" id="season7Popup" role="dialog" aria-modal="true" aria-label="Miraculous Season 7 teaser">
